@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.6, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 283.5 283.5" style="enable-background:new 0 0 283.5 283.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#FFFFFF;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;}
+	.st1{fill:none;stroke:#FFFFFF;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+<title>Fan_Heater</title>
+<rect x="71.3" y="219.7" class="st0" width="22.7" height="11.3"/>
+<rect x="189.9" y="219.7" class="st0" width="22.7" height="11.3"/>
+<path class="st0" d="M208.7,138.5c4.2-2.1,7.2-4.9,15.2-4.9c12.8,0,12.8,7.1,25.5,7.1c7,0,10.1-2.1,13.6-4.1"/>
+<path class="st0" d="M208.7,154.4c4.2-2.1,7.2-4.9,15.2-4.9c12.8,0,12.8,7.1,25.5,7.1c7,0,10.1-2.1,13.7-4.1"/>
+<path class="st0" d="M208.7,122.5c4.2-2.1,7.2-4.9,15.2-4.9c12.8,0,12.8,7.1,25.5,7.1c7,0,10.1-2.1,13.6-4.1"/>
+<path class="st0" d="M208.7,170.4c4.2-2.1,7.2-4.9,15.2-4.9c12.8,0,12.8,7.1,25.5,7.1c7,0,10.1-2.1,13.7-4.1"/>
+<path class="st0" d="M208.7,186.3c4.2-2.1,7.2-4.9,15.2-4.9c12.8,0,12.8,7.1,25.5,7.1c7,0,10.1-2.1,13.7-4.1"/>
+<circle class="st0" cx="141.7" cy="153.1" r="56.7"/>
+<path class="st1" d="M139.8,96.4c12.1,14.2,9.3,30.6,6.7,42.2"/>
+<path class="st1" d="M100.3,114.3c18.6,1.5,28.1,15.1,34.6,25.1"/>
+<path class="st1" d="M85.1,154.9c14.2-12.1,30.5-9.3,42.2-6.6"/>
+<path class="st1" d="M103,194.5c1.5-18.6,15.1-28.1,25.1-34.6"/>
+<path class="st1" d="M143.6,209.7c-12.1-14.2-9.3-30.6-6.6-42.2"/>
+<path class="st1" d="M183.1,191.8c-18.6-1.5-28.1-15.1-34.6-25.1"/>
+<path class="st1" d="M198.4,151.2c-14.2,12.1-30.6,9.3-42.2,6.6"/>
+<path class="st1" d="M180.5,111.7c-1.5,18.6-15.1,28.2-25.1,34.5"/>
+<path class="st1" d="M118.3,101.4c16.6,8.5,20.2,24.7,22.3,36.4"/>
+<path class="st1" d="M88.7,133.1c17.8-5.8,31.8,3.1,41.5,10"/>
+<path class="st1" d="M90.1,176.5c8.5-16.6,24.7-20.2,36.4-22.3"/>
+<path class="st1" d="M121.8,206.1c-5.8-17.8,3.1-31.8,10-41.6"/>
+<path class="st1" d="M165.1,204.7c-16.6-8.5-20.2-24.7-22.3-36.4"/>
+<path class="st1" d="M194.8,173c-17.8,5.8-31.8-3.1-41.5-10"/>
+<path class="st1" d="M193.4,129.7c-8.5,16.6-24.7,20.2-36.4,22.3"/>
+<path class="st1" d="M161.7,100c5.8,17.8-3.1,31.8-10,41.5"/>
+<circle class="st0" cx="141.7" cy="153.1" r="15.2"/>
+<path class="st0" d="M226.8,106.3V86.5H56.7v126.8c0,3.6,3.9,6.4,8.7,6.4H218c4.8,0,8.7-2.9,8.7-6.4v-13.4"/>
+<circle class="st1" cx="78.4" cy="69.4" r="9.9"/>
+<line class="st1" x1="78.4" y1="69.4" x2="78.4" y2="59.5"/>
+<circle class="st1" cx="103.8" cy="69.4" r="9.9"/>
+<line class="st1" x1="103.8" y1="69.4" x2="110.8" y2="76.5"/>
+<path class="st0" d="M63.3,52.4h156.8c3.7,0,6.6,3,6.6,6.7v27.4l0,0h-170l0,0V59.1C56.7,55.4,59.7,52.4,63.3,52.4z"/>
+<ellipse transform="matrix(8.248051e-02 -0.9966 0.9966 8.248051e-02 -22.5658 281.6894)" class="st1" cx="141.7" cy="153.1" rx="35.4" ry="35.4"/>
+</svg>

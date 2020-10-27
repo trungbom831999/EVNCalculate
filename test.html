@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form EVN</title>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/popper.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script src='lib/a076d05399.js'></script>
+    <link href="lib/roundslider.min.css" rel="stylesheet" />
+    <script src="lib/roundslider.min.js"></script>
+    <script src="lib/sweetalert2@10.js"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="shortcut icon" href="image/icon.gif">
+    <style>
+        .frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            margin-top: -200px;
+            margin-left: -200px;
+            border-radius: 2px;
+            /* box-shadow: .5rem 1rem 1rem 0 rgba(0, 0, 0, 0.6); */
+            overflow: hidden;
+            color: #333;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            /* background: #201c29; */
+        }
+
+        .thermostat {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            top: 100px;
+            left: 100px;
+            background: #F2F2F2;
+            border-radius: 50%;
+            /* box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.8); */
+        }
+
+        .thermostat .control {
+            position: absolute;
+            z-index: 5;
+            width: 130px;
+            height: 130px;
+            top: 22.5%;
+            left: 35px;
+            background: #E6E6E6;
+            border-radius: 50%;
+            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.7);
+        }
+
+        .thermostat .control .temp_outside {
+            position: absolute;
+            top: 25px;
+            left: 6px;
+            right: 0;
+            text-align: center;
+            font-weight: 300;
+            font-size: 1rem;
+        }
+
+        .thermostat .control .temp_room {
+            position: absolute;
+            top: 34px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: 400;
+            font-size: 60px;
+            line-height: 60px;
+            color: #873183;
+            letter-spacing: -8px;
+            padding-right: 12px;
+            opacity: 1;
+            transform: translateX(0);
+            transition: all .5s ease-in-out;
+        }
+
+        .thermostat .control .temp_room span {
+            position: absolute;
+            top: 0;
+            right: 37px;
+            font-size: 2rem;
+            line-height: 34px;
+            padding: 3px 0 0 7px;
+            color: #8e2275;
+        }
+
+        .room {
+            position: absolute;
+            bottom: 18px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: 300;
+            font-size: 1rem;
+        }
+
+        .thermostat .ring {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            top: 10px;
+            left: 10px;
+            /* background: url("image/bgRound.png") center center no-repeat; */
+            background-image: url("image/bgRound.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            border-radius: 50%;
+            box-shadow: inset 2px 4px 4px 0px rgba(0, 0, 0, 0.3);
+        }
+
+        .thermostat .ring .bottom_overlay {
+            position: absolute;
+            width: 95px;
+            height: 95px;
+            top: 50%;
+            left: 50%;
+            background: #F2F2F2;
+            transform-origin: 0 0;
+            transform: rotate(45deg);
+            border-radius: 0 0 95px 0;
+        }
+
+        #slider {
+            position: absolute;
+            width: 170px;
+            height: 150px;
+            top: 36%;
+            left: 32%;
+            z-index: 1000;
+        }
+
+        #slider .rs-border {
+            border-color: transparent;
+        }
+
+        .rs-control .rs-range-color,
+        .rs-control .rs-path-color,
+        .rs-control .rs-bg-color {
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .rs-control .rs-handle {
+            background-color: fade-out(#522c6d, .2);
+        }
+
+        .rs-tooltip.edit,
+        .rs-tooltip .rs-input,
+        .rs-tooltip-text {
+            font-family: rubik, helvetica, sans-serif;
+            font-size: 3.3rem;
+            background: transparent;
+            color: #8e2275;
+            font-weight: 400;
+            top: 65%;
+            height: 3.9rem;
+            padding: 0 !important;
+            width: 4.5rem;
+        }
+
+        #slider:hover .rs-tooltip,
+        .rs-tooltip:focus,
+        .rs-tooltip-text:focus {
+            border: none;
+            transform: scale(1.1);
+            transition: .1s;
+        }
+
+        #slider .rs-transition {
+            transition-timing-function: cubic-bezier(1.000, -0.530, 0.405, 1.425);
+        }
+
+        .instructions {
+            position: absolute;
+            bottom: .5rem;
+            color: fade-out(white, .75);
+            font-size: 1rem;
+            font-family: raleway, sans-serif;
+            width: 85%;
+            left: 10%;
+            font-weight: 300;
+            letter-spacing: .05rem;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        .fas {
+            animation: pulse 1s infinite;
+        }
+
+        .rs-handle {
+            background-color: #F2F2F2;
+            box-shadow: 0.1rem 0.1rem 1rem 0 rgba(0, 0, 0, 0.6);
+            border: 5px solid #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame">
+        <div id="slider" class="rslider"></div>
+        <div class="thermostat">
+            <div class="ring">
+                <div class="bottom_overlay"></div>
+            </div>
+            <div class="control">
+                <div class="temp_outside">Số giờ/ngày</div>
+                <div class="temp_room"></div>
+                <!-- <div class="room">/Ngày</div> -->
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#slider").roundSlider({
+            radius: 72,
+            circleShape: "half-top",
+            sliderType: "min-range",
+            mouseScrollAction: true,
+            value: 1,
+            handleSize: "+10",
+            min: 1,
+            max: 24
+        });
+    </script>
+</body>
+
+</html>

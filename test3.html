@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form EVN</title>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/popper.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <!-- <script src="lib/jquery.validate.min.js"></script> -->
+    <script src='lib/a076d05399.js'></script>
+    <script src="lib/Chart.min.js"></script>
+    <script src="lib/utils.js"></script>
+    <script src="lib/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="lib/chartjs-plugin-labels.js"></script>
+    <script src="lib/sweetalert2@10.js"></script>
+    <link rel="shortcut icon" href="image/icon.gif">
+    <style>
+        .temperature-question-wrapper {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .input-temperature {
+            width: 80px;
+            height: 60px;
+            text-align: center;
+            font-size: 20px;
+            border: 1px solid #c8c8c8;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        .temperature-widget-wrapper {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            padding-top: 20px;
+        }
+
+        .temperature-gauge-wrapper {
+            display: -ms-flexbox;
+            display: flex;
+            box-sizing: border-box;
+            width: 150px;
+            padding: 7px;
+            border: 5px solid #1b2e5a;
+            border-radius: 3px;
+            height: 380px;
+        }
+
+        .temperature-gauge {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            width: 100%;
+            padding: 10px 0 5px 10px;
+        }
+
+        .temperature-gauge .graduations {
+            -ms-flex-item-align: end;
+            align-self: flex-end;
+            margin-right: -2px;
+        }
+
+        .temperature-gauge-label {
+            display: -ms-flexbox;
+            display: flex;
+            color: #fff;
+            font-size: 60px;
+            font-weight: 500;
+            min-height: 40px;
+        }
+
+        .temperature-gauge-label .unit {
+            font-size: 40px;
+            font-weight: 200;
+        }
+
+        .temperature-widget-wrapper .counter-buttons {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            margin-left: 30px;
+        }
+
+        .temperature-widget-wrapper .counter-buttons svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .counter-buttons .pulse {
+            border-radius: 50%;
+            animation: pulse 3s ease-out infinite;
+            box-shadow: 0 0 20px #f2bf38;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="temperature-question-wrapper">
+        <h5 class="secondary-heading" style="color: rgb(27, 46, 90); text-align: left;">Nhiệt độ điều hòa của bạn?</h5>
+        <input type="number" min="16" max="32" class="input-temperature" value="18">
+    </div>
+    <div class="temperature-widget-wrapper">
+        <div class="temperature-gauge-wrapper">
+            <div class="temperature-gauge"
+                style="background-image: linear-gradient(-180deg, rgb(21, 156, 212) 0%, rgb(47, 42, 149) 50%, rgb(78, 34, 141) 100%);">
+                <svg class="graduations" width="62" height="245">
+                    <g stroke="#FFF" stroke-width="3" fill="none" fill-rule="evenodd">
+                        <path d="M34.015 33.585H59.93M34.21 182.379h25.72" stroke-linecap="round"></path>
+                        <path d="M2.281 107.982H59.93" stroke-linecap="square"></path>
+                        <path
+                            d="M33.748 47.427h26.184M33.748 2.442h26.184M33.748 196.22h26.184M34.34 121.823h26.184M33.748 62.998h26.184M33.748 18.014h26.184M33.748 211.792h26.184M34.34 137.395h26.184M33.748 78.57h26.184M33.748 227.363h26.184M34.34 151.236h26.184M33.748 92.41h26.184M33.748 242.935h26.184m-26.184-76.127h26.184"
+                            stroke-linecap="round"></path>
+                    </g>
+                </svg>
+                <div class="temperature-gauge-label">18<span class="unit">°</span></div>
+            </div>
+        </div>
+        <div class="counter-buttons"><svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1"
+                xmlnsXlink="http://www.w3.org/1999/xlink" opacity="1" cursor="pointer" pointer-events="normal"
+                class="pulse icon-up">
+                <g transform="translate(-93.000000, -1861.000000) translate(0.000000, 1052.000000) translate(16.000000, 809.000000)"
+                    stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <rect fill="#f2bf38" x="77" y="0" width="45" height="45" rx="22.5"></rect>
+                    <path d="M100 10v26M87 23h26" stroke="#1b2e5a" stroke-width="4" stroke-linecap="round"></path>
+                </g>
+            </svg><svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1"
+                xmlnsXlink="http://www.w3.org/1999/xlink" opacity="1" cursor="pointer" pointer-events="normal"
+                class="icon-down">
+                <g transform="translate(-93.000000, -1914.000000) translate(0.000000, 1052.000000) translate(16.000000, 809.000000)"
+                    stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <rect fill="#f2bf38" x="77" y="53" width="45" height="45" rx="22.5"></rect>
+                    <path d="M87,76 L113,76" stroke="#1b2e5a" stroke-width="4" stroke-linecap="round"></path>
+                </g>
+            </svg></div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.temperature-widget-wrapper').each(function () {
+                var spinner = $(this),
+                    input = spinner.find('.temperature-gauge-label'),
+                    btnUp = spinner.find('.icon-up'),
+                    btnDown = spinner.find('.icon-down'),
+                    min = 16,
+                    max = 32;
+
+                btnUp.click(function () {
+                    var oldValue = parseFloat(input.html());
+                    if (oldValue >= max) {
+                        var newVal = oldValue;
+                    } else {
+                        var newVal = oldValue + 1;
+                    }
+                    var html = newVal + "<span class='unit'>°</span>";
+                    spinner.find(".temperature-gauge-label").html(html);
+                    $('.input-temperature').val(newVal);
+                    // spinner.find("input").trigger("change");
+                });
+
+                btnDown.click(function () {
+                    var oldValue = parseFloat(input.html());
+                    if (oldValue <= min) {
+                        var newVal = oldValue;
+                    } else {
+                        var newVal = oldValue - 1;
+                    }
+                    var html = newVal + "<span class='unit'>°</span>";
+                    spinner.find(".temperature-gauge-label").html(html);
+                    $('.input-temperature').val(newVal);
+                    // spinner.find("input").trigger("change");
+                });
+
+            });
+        });
+    </script>
+</body>
+
+</html>

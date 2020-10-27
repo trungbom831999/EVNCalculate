@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form EVN</title>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/popper.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <!-- <script src="lib/jquery.validate.min.js"></script> -->
+    <script src='lib/a076d05399.js'></script>
+    <script src="lib/Chart.min.js"></script>
+    <script src="lib/utils.js"></script>
+    <script src="lib/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="lib/chartjs-plugin-labels.js"></script>
+    <script src="lib/sweetalert2@10.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="image/icon.gif">
+    <!-- <style>
+        input[type=range][orient=vertical] {
+            writing-mode: bt-lr;
+            -webkit-appearance: slider-vertical;
+            width: 15px;
+            height: 200px;
+            padding: 0 5px;
+        }
+
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 45px;
+            /* height: 1.2em; */
+            cursor: pointer;
+            border: 2px solid #29334f;
+            border-radius: 5px;
+            overflow: hidden;
+            background-image: url('image/bgRangeVertical.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 10px;
+            height: 10px;
+            background-color: #555;
+            background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4DDBFF), to(#00CCFF));
+            background-image: -webkit-linear-gradient(right, #4DDBFF, #00CCFF);
+            background-image: -moz-linear-gradient(right, #4DDBFF, #00CCFF);
+            background-image: -ms-linear-gradient(right, #4DDBFF, #00CCFF);
+            background-image: -o-linear-gradient(right, #4DDBFF, #00CCFF);
+        }
+    </style> -->
+    <style>
+        body {
+            /* background-color: #000; */
+        }
+
+        .range-vertical {
+            width: 80vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0 15px;
+        }
+
+        input[type="range"] {
+            width: 500px;
+            -webkit-appearance: none;
+            height: 60px;
+            position: relative;
+            /* background-color: rgba(255, 255, 255, 0.5); */
+            background-image: url('image/bgRangeVertical.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            border-radius: 5px;
+            margin: 0px;
+            border: 3px solid #000;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            background-color: transparent;
+            backdrop-filter: blur(8px);
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            border: 10px solid #fff;
+            box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.8);
+            /* margin-left: -15px; */
+            /* margin-right: 15px; */
+        }
+
+        #number {
+            background-color: #ffd901;
+            height: 40px;
+            width: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 20px;
+            border-radius: 3px;
+            transform: rotate(90deg);
+            letter-spacing: 1.2px;
+        }
+
+        #number::before {
+            position: absolute;
+            content: "";
+            height: 0;
+            width: 0;
+            border-bottom: 10px solid #ffd901;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            top: -9px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <input class="range-vertical ml-5" type="range" orient="vertical" min="1" max="50"/> -->
+    <div class="range-vertical">
+        <div id="number">0</div>
+        <input type="range" min="1" max="50" value="0" id="slider">
+    </div>
+    <script>
+        $('#slider').on('input', function () {
+            $('#number').text($('#slider').val());
+        });
+        $('#slider').on('input', function () {
+            var value = parseInt($('#slider').val());
+            if (value < 10) $('input[type="range"]::-webkit-slider-thumb').css('margin-left', '-15px');
+            if (value > 40) $('input[type="range"]::-webkit-slider-thumb').css('margin-left', '15px');
+        });
+    </script>
+</body>
+
+</html>

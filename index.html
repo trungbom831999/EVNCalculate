@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power calculation EVN</title>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/popper.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <!-- <script src="lib/jquery.validate.min.js"></script> -->
+    <script src='lib/a076d05399.js'></script>
+    <script src="lib/Chart.min.js"></script>
+    <script src="lib/utils.js"></script>
+    <script src="lib/Chart.bundle.min.js"></script>
+    <!-- <script src="lib/chartjs-plugin-datalabels.js"></script> -->
+    <script type="text/javascript" src="lib/chartjs-plugin-labels.js"></script>
+    <script src="lib/sweetalert2@10.js"></script>
+    <script src="lib/roundslider.min.js"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyBl1TaTDoN6Pli_2AEEWhRZGOEX475biTo"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl1TaTDoN6Pli_2AEEWhRZGOEX475biTo&callback=initMap&libraries=places&v=weekly"
+        defer></script>
+    <!-- <script src="lib/vue.js"></script> -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="lib/font-awesome.min.css">
+    <link href="lib/roundslider.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="image/icon.gif">
+</head>
+
+<body>
+    <!-- header -->
+    <div id="form-input">
+        <div class="row" id="list-input">
+            <div class="col-md-3 text-center">
+                <img class="pl-2" src="image/imgInput.png" alt="Bảo vệ người sử dụng">
+            </div>
+            <div class="col-md-6 text-center">
+                <h5>Thông tin người sử dụng điện</h5>
+                <div id="no-info" style="display: block;">
+                    <p style="opacity: 0.6;">Thông tin người sử dụng điện</p>
+                </div>
+                <div class="text-left ml-2" id="fill-info">
+                    <p id="fill-name"></p>
+                    <p id="fill-phone"></p>
+                    <p id="fill-email"></p>
+                    <p id="fill-area"></p>
+                    <div class="div-inline">
+                        <p id="fill-house"></p>
+                        <p id="fill-adults"></p>
+                        <p id="fill-children"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center p-md-4">
+                <button id="btn-accept" class="btn btn-primary btn-blue" data-toggle="modal" data-target="#modalInfoCustomer">
+                    <p style="margin: 0 -5px">Nhập thông tin</p>
+                </button>
+            </div>
+        </div>
+        <div class="modal fade pr-0 show" id="modalInfoCustomer" tabindex="-1" aria-modal="true" role="dialog"
+            style="padding-right: 16px;">
+            <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+                <div class="modal-content-full-width modal-content">
+                    <div class="modal-header-full-width modal-header text-center">
+                        <h5 class="modal-title text-uppercase font-weight-bold m-auto" id="exampleModalLabel">Nhập thông
+                            tin người dùng
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="info-customer" class="mx-5">
+                            <div id="info-first" class="mb-5 border-bot">
+                                <h5 class="text-center mb-5">Nhập thông tin cá nhân</h5>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="name">Họ tên</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập họ tên">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="phone">Số điện thoại</label>
+                                        <input type="tel" class="form-control" id="phone" placeholder="Nhập sđt">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Nhập email">
+                                    </div>
+                                </div>
+                                <!-- <div class="">
+                                    <a href="#info-second" class="nextInfo" title="next" value=""></a>
+                                </div> -->
+                                <div class="nextStep" style="border-bottom: none !important;">
+                                    <a href="#info-house" class="tcwNextBtn next disable" title="next" value=""></a>
+                                </div>
+                            </div>
+
+                            <div id="info-house" class="my-5 border-bot disable">
+                                <h5 class="text-center my-4">Chọn nhà của bạn</h5>
+                                <div class="listHouse" id="listHouse">
+                                    <button tabindex="0" class="itemHouse" id="home"><img class="tile-icon"
+                                            src="image/house.svg" alt="image item"><span class="tile-label">Nhà
+                                            riêng</span></button>
+                                    <button tabindex="0" class="itemHouse" id="apartment"><img class="tile-icon"
+                                            src="image/apartment.svg" alt="image item"><span class="tile-label">Chung
+                                            cư</span></button>
+                                </div>
+                                <div class="nextStep" style="border-bottom: none !important;">
+                                    <a href="#info-people" class="tcwNextBtn next disable" title="next" value="">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div id="info-people" class="my-5 border-bot disable">
+                                <div class="row py-4" style="background-color: #ffffff; box-shadow: 0 0 15px 0 hsla(0, 0%, 78%, .75);
+                                border-radius: 10px;">
+                                    <div class="col-md-6">
+                                        <img class="img-people" src="image/people.png" alt="Số người">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="text-center my-4">Chọn số lượng người</h5>
+                                        <div class="listHouse">
+                                            <div>
+                                                <div class="div-inline quantity">
+                                                    <input class="inputModal" type="number" id="adults" name="adults"
+                                                        min="0" max="8" value="1">
+                                                    <div class="icon-up-down">
+                                                        <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                        <br>
+                                                        <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                                <h5 class="ml-4"><label for="adults">Người lớn</label></h5>
+                                            </div>
+                                            <div>
+                                                <div class="div-inline quantity">
+                                                    <input class="inputModal" type="number" id="children"
+                                                        name="children" min="0" max="8" value="1">
+                                                    <div class="icon-up-down">
+                                                        <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                        <br>
+                                                        <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                                <h5 class="ml-4"><label for="children">Trẻ em</label></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nextStep" style="border-bottom: none !important;">
+                                    <a href="#info-area" class="tcwNextBtn next disable" title="next" value=""></a>
+                                </div>
+                            </div>
+
+                            <div id="info-area" class="mt-5 disable">
+                                <h5 class="text-center mb-4">Địa chỉ của bạn</h5>
+                                <div class="row mb-4">
+                                    <!-- <input type="text" class="form-control m-auto" id="area"> -->
+                                    <div class="col-sm-6 text-sm-right text-center mb-3">
+                                        <a href="#info-area" class="btn btn-primary btn-blue" id="shareLocal" >Chia
+                                            sẻ địa chỉ của
+                                            bạn</a>
+                                    </div>
+                                    <div class="col-sm-6 text-sm-left text-center">
+                                        <a href="#info-area" class="btn btn-primary btn-blue" id="getLocal">Nhập vị trí trên
+                                            bản
+                                            đồ</a>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="lat">
+                                <input type="hidden" id="lng">
+                                <div id="mapholder"></div>
+                                <div id="pac-map" style="display: none;">
+                                    <div class="pac-card" id="pac-card">
+                                        <div>
+                                            <div id="title">Nhập địa chỉ của bạn</div>
+                                            <!-- <div id="type-selector" class="pac-controls">
+                                            <input type="radio" name="type" id="changetype-all" checked="checked" />
+                                            <label for="changetype-all">All</label>
+                            
+                                            <input type="radio" name="type" id="changetype-establishment" />
+                                            <label for="changetype-establishment">Establishments</label>
+                            
+                                            <input type="radio" name="type" id="changetype-address" />
+                                            <label for="changetype-address">Addresses</label>
+                            
+                                            <input type="radio" name="type" id="changetype-geocode" />
+                                            <label for="changetype-geocode">Geocodes</label>
+                                        </div>
+                                        <div id="strict-bounds-selector" class="pac-controls">
+                                            <input type="checkbox" id="use-strict-bounds" value="" />
+                                            <label for="use-strict-bounds">Strict Bounds</label>
+                                        </div> -->
+                                        </div>
+                                        <div id="pac-container">
+                                            <input class="form-control" id="pac-input" type="text"
+                                                placeholder="Ví dụ: 11 Cửa Bắc" />
+                                        </div>
+                                    </div>
+                                    <div id="map"></div>
+                                    <div id="infowindow-content">
+                                        <img src="" width="16" height="16" id="place-icon" />
+                                        <span id="place-name" class="title"></span><br />
+                                        <span id="place-address"></span>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-xn m-auto" id="btn-xn-info"
+                                    style="display: block;">Lưu
+                                    thông tin</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- list-device -->
+    <div id="device" class="px-3">
+        <div id="list-device">
+            <h5 class="text-center mb-4" style="font-size: 22px;"><strong>Thiết bị cơ bản</strong>
+            </h5>
+            <div class="row" id="row-device">
+                <div class="col-md-6 mb-1 pl-md-4 pr-md-1">
+                    <div class="div-device">
+                        <button type="button" class="btn btn-white btn-device" id="btn-bep" backimg="icon/bepDien.svg"
+                            backhoverimg="icon/bepDien-hover.svg" data-id="1">
+                            <a href="" data-toggle="modal" data-target="#modalBep">
+                                <span class="iconBox" style="background-image: url('icon/bepDien.svg');"></span>
+                                <span class="listname">
+                                    <span class="font28">Bếp điện</span>
+                                    <span id="recommend-bep" class="font16 recommend">Bạn tiết kiệm được 10% so với thực
+                                        tế</span>
+                                </span>
+                                <span class="listarrow">
+                                    <span class="valueTxt">-1</span>
+                                    <span class="unitDevice">kWh</span>
+                                </span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-1 pl-md-1 pr-md-4">
+                    <div class="div-device">
+                        <button type="button" class="btn btn-white btn-device" id="btn-den" backimg="icon/den.svg"
+                            backhoverimg="icon/den-hover.svg" data-id="2">
+                            <a href="" data-toggle="modal" data-target="#modalDen">
+                                <span class="iconBox" style="background-image: url('icon/den.svg');"></span>
+                                <span class="listname">
+                                    <span class="font28">Đèn chiếu sáng</span>
+                                    <span id="recommend-den" class="font16 recommend">Bạn tiết kiệm được 25% so với thực
+                                        tế</span>
+                                </span>
+                                <span class="listarrow">
+                                    <span class="valueTxt">-1</span>
+                                    <span class="unitDevice">kWh</span>
+                                </span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-1 pl-md-4 pr-md-1">
+                    <div class="div-device">
+                        <button type="button" class="btn btn-white btn-device" id="btn-tuLanh" backimg="icon/tuLanh.svg"
+                            backhoverimg="icon/tuLanh-hover.svg" data-id="3">
+                            <a href="" data-toggle="modal" data-target="#modalTuLanh">
+                                <span class="iconBox" style="background-image: url('icon/tuLanh.svg');"></span>
+                                <span class="listname">
+                                    <span class="font28">Tủ lạnh</span>
+                                    <span id="recommend-tuLanh" class="font16 recommend">Bạn tiết kiệm được rất nhiều
+                                        tiền</span>
+                                </span>
+                                <span class="listarrow">
+                                    <span class="valueTxt">-1</span><span class="unitDevice">kWh</span>
+                                </span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-1 pl-md-1 pr-md-4">
+                    <div class="div-device">
+                        <button type="button" class="btn btn-white btn-device" id="btn-tivi" backimg="icon/tv.svg"
+                            backhoverimg="icon/tv-hover.svg" data-id="5">
+                            <a href="" data-toggle="modal" data-target="#modalTivi">
+                                <span class="iconBox" style="background-image: url('icon/tv.svg');"></span>
+                                <span class="listname">
+                                    <span class="font28">Tivi</span>
+                                    <span id="recommend-tivi" class="font16 recommend">Bạn tiết kiệm được 55%
+                                        tiền</span>
+                                </span><span class="listarrow">
+                                    <span class="valueTxt">-1</span>
+                                    <span class="unitDevice">kWh</span>
+                                </span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-1 pl-md-4 pr-md-1">
+                    <div class="div-device">
+                        <button type="button" class="btn btn-white btn-device" id="btn-mayGiat"
+                            backimg="icon/mayGiat.svg" backhoverimg="icon/mayGiat-hover.svg" data-id="9">
+                            <a href="" data-toggle="modal" data-target="#modalMayGiat">
+                                <span class="iconBox" style="background-image: url('icon/mayGiat.svg');"></span>
+                                <span class="listname">
+                                    <span class="font28">Máy giặt</span>
+                                    <span id="recommend-tivi" class="font16 recommend">Bạn tiết kiệm được 69%
+                                        tiền</span>
+                                </span>
+                                <span class="listarrow">
+                                    <span class="valueTxt">-1</span>
+                                    <span class="unitDevice">kWh</span>
+                                </span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-1 pl-md-1 pr-md-4">
+                    <div class="div-device">
+                        <button type="button" class="btn btn-white btn-device" id="btn-quat" backimg="icon/quat.svg"
+                            backhoverimg="icon/quat-hover.svg" data-id="10">
+                            <a href="" data-toggle="modal" data-target="#modalQuat">
+                                <span class="iconBox" style="background-image: url('icon/quat.svg');"></span>
+                                <span class="listname">
+                                    <span class="font28">Quạt máy</span>
+                                    <span id="recommend-quat" class="font16 recommend">Bạn tiết kiệm được 15%
+                                        tiền</span>
+                                </span>
+                                <span class="listarrow">
+                                    <span class="valueTxt">-1</span>
+                                    <span class="unitDevice">kWh</span>
+                                </span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="list-device-2">
+            <h5 class="text-center mb-4 mt-4" style="font-size: 22px;"><strong>Thiết bị tiêu thụ nhiều điện</strong>
+            </h5>
+            <div class="row" id="row-device">
+                <div class="col-md-6 mb-1 pl-md-4 pr-md-1">
+                    <div class="div-device">
+                        <button type="button" class="btn btn-white btn-device" id="btn-dieuHoa"
+                            backimg="icon/dieuHoa.svg" backhoverimg="icon/dieuHoa-hover.svg" data-id="1">
+                            <a href="" data-toggle="modal" data-target="#modalDieuHoa">
+                                <span class="iconBox" style="background-image: url('icon/dieuHoa.svg');"></span>
+                                <span class="listname">
+                                    <span class="font28">Điều hòa</span>
+                                    <span id="recommend-dieuHoa" class="font16 recommend">Bạn tiết kiệm được 99%
+                                        tiền</span>
+                                </span>
+                                <span class="listarrow">
+                                    <span class="valueTxt">-1</span>
+                                    <span class="unitDevice">kWh</span>
+                                </span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-1 pl-md-1 pr-md-4">
+                    <div class="div-device">
+                        <button type="button" class="btn btn-white btn-device" id="btn-maySay" backimg="icon/maySay.svg"
+                            backhoverimg="icon/maySay-hover.svg" data-id="8">
+                            <a href="" data-toggle="modal" data-target="#modalMaySay">
+                                <span class="iconBox" style="background-image: url('icon/maySay.svg');"></span>
+                                <span class="listname">
+                                    <span class="font28">Máy sấy</span>
+                                    <span id="recommend-maySay" class="font16 recommend">Bạn tiết kiệm được 55%
+                                        tiền</span>
+                                </span>
+                                <span class="listarrow">
+                                    <span class="valueTxt">-1</span>
+                                    <span class="unitDevice">kWh</span>
+                                </span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-1 pl-md-4 pr-md-1">
+                    <div class="div-device">
+                        <button type="button" class="btn btn-white btn-device" id="btn-mayRuaBat"
+                            backimg="icon/mayRuaBat.svg" backhoverimg="icon/mayRuaBat-hover.svg" data-id="7">
+                            <a href="" data-toggle="modal" data-target="#modalMayRuaBat">
+                                <span class="iconBox" style="background-image: url('icon/mayRuaBat.svg');"></span>
+                                <span class="listname">
+                                    <span class="font28">Máy rửa bát</span>
+                                    <span id="recommend-mayRuaBat" class="font16 recommend">Bạn tiêu tốn thêm 15%
+                                        tiền</span>
+                                </span>
+                                <span class="listarrow">
+                                    <span class="valueTxt">-1</span>
+                                    <span class="unitDevice">kWh</span>
+                                </span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-1 pl-md-1 pr-md-4">
+                    <div class="div-device">
+                        <button type="button" class="btn btn-white btn-device" id="btn-binhNongLanh"
+                            backimg="icon/binhNongLanh.svg" backhoverimg="icon/binhNongLanh-hover.svg" data-id="9">
+                            <a href="" data-toggle="modal" data-target="#modalBinhNongLanh">
+                                <span class="iconBox" style="background-image: url('icon/binhNongLanh.svg');"></span>
+                                <span class="listname">
+                                    <span class="font28">Bình nóng lạnh</span>
+                                    <span id="recommend-binhNongLanh" class="font16 recommend">Bạn tiết kiệm được 25%
+                                        tiền</span>
+                                </span>
+                                <span class="listarrow">
+                                    <span class="valueTxt">-1</span>
+                                    <span class="unitDevice">kWh</span>
+                                </span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="#calculate"><button type="button" class="btn btn-primary btn-calcu btn-blue mx-auto mb-3"
+                    id="btn-calcu">Tính hóa đơn</button></a>
+        </div>
+    </div>
+
+    <div id="calculate" class="p-3 m-5">
+        <div class="row">
+            <div class="col-lg-5 pt-5 pb-4">
+                <div id="table-parameter">
+                    <h5>Thống kê điện năng các tháng trong năm 2020</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tháng</th>
+                                <th>BQ ngày (kWh)</th>
+                                <th>Tổng ĐNTT (kWh)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>6</td>
+                                <td>188</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>13</td>
+                                <td>392</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>13</td>
+                                <td>417</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>13</td>
+                                <td>417</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>14</td>
+                                <td>425</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>14</td>
+                                <td>439</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>15</td>
+                                <td>452</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>15</td>
+                                <td>461</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>15</td>
+                                <td>461</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>15</td>
+                                <td>446</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>14</td>
+                                <td>439</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-7 pl-0">
+                <div id="month-detail">
+                    <h5 class="inline-block ml-5">Xem chi tiết điện năng trong tháng</h5>
+                    <select name="month-detail" class="inline-block ml-5">
+                        <option value="">----------</option>
+                        <option value="1">Tháng 1</option>
+                        <option value="2">Tháng 2</option>
+                        <option value="3">Tháng 3</option>
+                    </select>
+                </div>
+                <div id="chart" style="width: 100%; height: 400px;">
+                    <canvas id="canvas" class=""></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL  -->
+    <div class="modal fade pr-0" id="listDeviceModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content">
+                <div class="modal-header-full-width modal-header text-center">
+                    <h5 class="modal-title text-uppercase font-weight-bold m-auto" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-center mb-5" id="question"></h5>
+                    <div class="listDetailDevice" id="listDetailDevice">
+                    </div>
+                    <div class="nextStep disable">
+                        <a href="#info-device" class="tcwNextBtn" id="next" title="next" value=""></a>
+                    </div>
+                    <div id="info-device" class="row mt-3 info-device" style="height: 200px;">
+                        <div class="col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                            <div class="div-inline float-right quantity">
+                                <label class="labelModal" for="soGio">Số giờ sử dụng/ngày </label>
+                                <div class="div-inline">
+                                    <input class="inputModal" type="number" class="form-control" id="soGio" name="soGio"
+                                        min="1" value="1">
+                                    <div class="icon-up-down">
+                                        <i class="fas fa-plus icon-up mb-3"></i>
+                                        <br>
+                                        <i class="fas fa-minus icon-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="div-inline quantity">
+                                <label class="labelModal" for="soLuong">Số lượng </label>
+                                <div class="div-inline">
+                                    <input class="inputModal" type="number" class="form-control" id="soLuong"
+                                        name="soLuong" min="1" value="1">
+                                    <div class="icon-up-down">
+                                        <i class="fas fa-plus icon-up mb-3"></i>
+                                        <br>
+                                        <i class="fas fa-minus icon-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-xn m-auto" id="btn-xn">Xác nhận</button>
+                </div>
+                <div class="modal-footer-full-width modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- bep dien  -->
+    <div class="modal fade pr-0 show" id="modalBep" tabindex="-1" role="dialog" aria-modal="true"
+        style="padding-right: 16px;">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content">
+                <div class="modal-header-full-width modal-header text-center">
+                    <h5 class="modal-title m-auto" id="exampleModalLabel">Bếp điện
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center mb-5" id="question">Chọn loại bếp điện bạn có ?</h4>
+                    <div class="listDetailDevice" id="list-bep">
+                        <button tabindex="0" class="itemDevice" backimg="icon/bep/bepDien.svg"
+                            backhoverimg="icon/bep/bepDien-hover.svg" name="bepDon"><img class="tile-icon"
+                                alt="image item" src="icon/bep/bepDien.svg"><span class="tile-label">Bếp
+                                đơn</span></button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/bep/bepDoi.svg"
+                            backhoverimg="icon/bep/bepDoi-hover.svg" name="bepDoi"><img class="tile-icon"
+                                alt="image item" src="icon/bep/bepDoi.svg"><span class="tile-label">Bếp
+                                đôi</span></button>
+                    </div>
+                    <div class="nextStep disable">
+                        <a href="#info-bep" class="tcwNextBtn" id="next" title="next" value=""></a>
+                    </div>
+                    <div id="info-bep" class="mt-3 info-device disable">
+                        <ul class="nav nav-tabs tab-container" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#bepDon" role="tab"
+                                    aria-controls="bepDon" aria-selected="false">Bếp đơn</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#bepDoi" role="tab"
+                                    aria-controls="bepDoi" aria-selected="false">Bếp đôi</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade row" id="bepDon" role="tabpanel" aria-labelledby="bepDon-tab"
+                                style="
+                                min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-bepDon">Số giờ sử dụng/ngày </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-bepDon"
+                                                name="soGio-bepDon" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-bepDon">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-bepDon"
+                                                name="soLuong-bepDon" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade row" id="bepDoi" role="tabpanel" aria-labelledby="bepDoi-tab"
+                                style="
+                            min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-bepDoi">Số giờ sử dụng/ngày </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-bepDoi"
+                                                name="soGio-bepDoi" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-bepDoi">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-bepDoi"
+                                                name="soLuong-bepDoi" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-bep" style="display: none;">Xác
+                        nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- den chieu sang  -->
+    <div class="modal fade pr-0 show" id="modalDen" tabindex="-1" role="dialog" aria-modal="true"
+        style="padding-right: 16px;">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content">
+                <div class="modal-header-full-width modal-header text-center">
+                    <h5 class="modal-title m-auto" id="exampleModalLabel">Đèn chiếu
+                        sáng
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center mb-5" id="question">Chọn loại đèn chiếu sáng bạn có ?</h4>
+                    <div class="listDetailDevice" id="list-den">
+                        <button tabindex="0" class="itemDevice" backimg="icon/den/denHuynhQuang.svg"
+                            backhoverimg="icon/den/denHuynhQuang-hover.svg" name="denHuynhQuang"><img class="tile-icon"
+                                alt="image item" src="icon/den/denHuynhQuang.svg"><span class="tile-label">Đèn huỳnh
+                                quang</span></button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/den/denLed.svg"
+                            backhoverimg="icon/den/denLed-hover.svg" name="denLed"><img class="tile-icon"
+                                alt="image item" src="icon/den/denLed.svg"><span class="tile-label">Đèn
+                                LED</span></button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/den/denSoiDot.svg"
+                            backhoverimg="icon/den/denSoiDot-hover.svg" name="denSoiDot"><img class="tile-icon"
+                                alt="image item" src="icon/den/denSoiDot.svg"><span class="tile-label">Đèn sợi
+                                đốt</span></button>
+                    </div>
+                    <div class="nextStep disable">
+                        <a href="#info-den" class="tcwNextBtn" id="next" title="next" value=""></a>
+                    </div>
+                    <div id="info-den" class="mt-3 info-device disable">
+                        <ul class="nav nav-tabs tab-container" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#denHuynhQuang" role="tab"
+                                    aria-controls="denHuynhQuang" aria-selected="false">Đèn huỳnh quang</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#denLed" role="tab"
+                                    aria-controls="denLed" aria-selected="false">Đèn LED</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#denSoiDot" role="tab"
+                                    aria-controls="denSoiDot" aria-selected="false">Đèn sợi đốt</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade row" id="denHuynhQuang" role="tabpanel"
+                                aria-labelledby="denHuynhQuang-tab">
+                                <div class="col-md-6"
+                                    style="border-right: 1px solid #b6b6b6 !important; height: 400px;">
+                                    <div class="div-inline">
+                                        <label class="labelModal mx-auto">Số giờ sử dụng/ngày </label>
+                                        <!-- <input class="inputModal" type="number" class="form-control" id="soGio-dieuHoa" name="soGio-dieuHoa"
+                                                min="1" max="24" value="1"> -->
+                                    </div>
+                                    <div class="frame">
+                                        <div id="slider-denHuynhQuang" class="rslider"></div>
+                                        <div class="thermostat">
+                                            <div class="ring">
+                                                <div class="bottom_overlay"></div>
+                                            </div>
+                                            <div class="control">
+                                                <div class="temp_outside">Số giờ/ngày</div>
+                                                <div class="temp_room"></div>
+                                                <!-- <div class="room">/Ngày</div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="height: 400px;">
+                                    <div class="div-inline">
+                                        <label class="labelModal mx-auto" for="number-soBong-denHuynhQuang">Số bóng đèn
+                                            sử dụng
+                                        </label>
+                                        <!-- <input class="inputModal" type="number" class="form-control"
+                                            id="number-soBong-denHuynhQuang" name="number-soBong-denHuynhQuang" min="1"
+                                            max="50" value="1"> -->
+                                    </div>
+                                    <div class="frame">
+                                        <input class="inputModal margin-range" type="number" class="form-control"
+                                            id="number-soBong-denHuynhQuang" name="number-soBong-denHuynhQuang" min="1"
+                                            max="50" value="1">
+                                        <div class="range-vertical">
+                                            <input type="range" min="1" max="50" value="0" id="soBong-denHuynhQuang">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade row" id="denLed" role="tabpanel" aria-labelledby="denLed-tab">
+                                <div class="col-md-6"
+                                    style="border-right: 1px solid #b6b6b6 !important; height: 400px;">
+                                    <div class="div-inline">
+                                        <label class="labelModal mx-auto">Số giờ sử dụng/ngày </label>
+                                        <!-- <input class="inputModal" type="number" class="form-control" id="soGio-dieuHoa" name="soGio-dieuHoa"
+                                                min="1" max="24" value="1"> -->
+                                    </div>
+                                    <div class="frame">
+                                        <div id="slider-denLed" class="rslider"></div>
+                                        <div class="thermostat">
+                                            <div class="ring">
+                                                <div class="bottom_overlay"></div>
+                                            </div>
+                                            <div class="control">
+                                                <div class="temp_outside">Số giờ/ngày</div>
+                                                <div class="temp_room"></div>
+                                                <!-- <div class="room">/Ngày</div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="height: 400px;">
+                                    <div class="div-inline">
+                                        <label class="labelModal mx-auto" for="number-soBong-denLed">Số bóng đèn sử dụng
+                                        </label>
+                                        <!-- <div id="number-soBong">0</div> -->
+                                    </div>
+                                    <div class="frame">
+                                        <input class="inputModal margin-range" type="number" class="form-control"
+                                            id="number-soBong-denLed" name="number-soBong-denLed" min="1" max="50"
+                                            value="1">
+                                        <div class="range-vertical">
+                                            <input type="range" min="1" max="50" value="0" id="soBong-denLed">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade row" id="denSoiDot" role="tabpanel"
+                                aria-labelledby="denSoiDot-tab">
+                                <div class="col-md-6"
+                                    style="border-right: 1px solid #b6b6b6 !important; height: 400px;">
+                                    <div class="div-inline">
+                                        <label class="labelModal mx-auto">Số giờ sử dụng/ngày </label>
+                                        <!-- <input class="inputModal" type="number" class="form-control" id="soGio-dieuHoa" name="soGio-dieuHoa"
+                                                min="1" max="24" value="1"> -->
+                                    </div>
+                                    <div class="frame">
+                                        <div id="slider-denSoiDot" class="rslider"></div>
+                                        <div class="thermostat">
+                                            <div class="ring">
+                                                <div class="bottom_overlay"></div>
+                                            </div>
+                                            <div class="control">
+                                                <div class="temp_outside">Số giờ/ngày</div>
+                                                <div class="temp_room"></div>
+                                                <!-- <div class="room">/Ngày</div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="height: 400px;">
+                                    <div class="div-inline">
+                                        <label class="labelModal mx-auto" for="number-soBong-denSoiDot">Số bóng đèn sử
+                                            dụng
+                                        </label>
+                                        <!-- <div id="number-soBong">0</div> -->
+                                    </div>
+                                    <div class="frame">
+                                        <input class="inputModal margin-range" type="number" class="form-control"
+                                            id="number-soBong-denSoiDot" name="number-soBong-denSoiDot" min="1" max="50"
+                                            value="1">
+                                        <div class="range-vertical">
+                                            <input type="range" min="1" max="50" value="0" id="soBong-denSoiDot">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-den" style="display: block;">Xác
+                        nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- tu lanh  -->
+    <div class="modal fade pr-0 show" id="modalTuLanh" tabindex="-1" aria-modal="true" role="dialog"
+        style="padding-right: 16px;">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content">
+                <div class="modal-header-full-width modal-header text-center">
+                    <h5 class="modal-title m-auto" id="exampleModalLabel">Tủ lạnh
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center mb-5" id="question">Chọn loại tủ lạnh bạn có ?</h4>
+                    <div class="listDetailDevice" id="list-tuLanh">
+                        <div class="mb-3">
+                            <label tabindex="0" class="itemDevice-nonHover" backimg="icon/tuLanh/tuLanhLon.svg"
+                                backhoverimg="icon/tuLanh/tuLanhLon-hover.svg" for="slTuLanhLon"><img class="tile-icon"
+                                    alt="image item" src="icon/tuLanh/tuLanhLon.svg"><span
+                                    class="tile-label text-center">Tủ lạnh
+                                    lớn</span></label>
+                            <div class="div-inline quantity">
+                                <input class="inputModal" type="number" id="slTuLanhLon" name="slTuLanhLon" min="0"
+                                    max="10" value="0">
+                                <div class="icon-up-down">
+                                    <i class="fas fa-plus icon-up mb-1" aria-hidden="true"></i>
+                                    <br>
+                                    <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label tabindex="0" class="itemDevice-nonHover" backimg="icon/tuLanh/tuLanhTrungBinh.svg"
+                                backhoverimg="icon/tuLanh/tuLanhTrungBinh-hover.svg" for="slTuLanhTrungBinh"><img
+                                    class="tile-icon" alt="image item" src="icon/tuLanh/tuLanhTrungBinh.svg"><span
+                                    class="tile-label text-center">Tủ lạnh trung
+                                    bình</span></label>
+                            <div class="div-inline quantity">
+                                <input class="inputModal" type="number" id="slTuLanhTrungBinh" name="slTuLanhTrungBinh"
+                                    min="0" max="10" value="0">
+                                <div class="icon-up-down">
+                                    <i class="fas fa-plus icon-up mb-1" aria-hidden="true"></i>
+                                    <br>
+                                    <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label tabindex="0" class="itemDevice-nonHover" backimg="icon/tuLanh/tuLanhMini.svg"
+                                backhoverimg="icon/tuLanh/tuLanhMini-hover.svg" for="slTuLanhMini"><img
+                                    class="tile-icon" alt="image item" src="icon/tuLanh/tuLanhMini.svg"><span
+                                    class="tile-label text-center">Tủ lạnh
+                                    mini</span></label>
+                            <div class="div-inline quantity">
+                                <input class="inputModal" type="number" id="slTuLanhMini" name="slTuLanhMini" min="0"
+                                    max="10" value="0">
+                                <div class="icon-up-down">
+                                    <i class="fas fa-plus icon-up mb-1" aria-hidden="true"></i>
+                                    <br>
+                                    <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-tuLanh" style="display: block;">Xác
+                        nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- tivi  -->
+    <div class="modal fade pr-0 show" id="modalTivi" tabindex="-1" style="padding-right: 16px;" aria-modal="true"
+        role="dialog">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content">
+                <div class="modal-header-full-width modal-header text-center">
+                    <h5 class="modal-title m-auto" id="exampleModalLabel">Tivi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center mb-5" id="question">Chọn loại tivi bạn có ?</h4>
+                    <div class="listDetailDevice" id="list-tivi">
+                        <button tabindex="0" class="itemDevice" backimg="icon/tivi/tiviHD.svg"
+                            backhoverimg="icon/tivi/tiviHD-hover.svg" name="tiviHD"><img src="icon/tivi/tiviHD.svg"
+                                class="tile-icon" alt="image item"><span class="tile-label">Tivi HD</span>
+                        </button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/tivi/tivi4K.svg"
+                            backhoverimg="icon/tivi/tivi4K-hover.svg" name="tivi4K"><img src="icon/tivi/tivi4K.svg"
+                                class="tile-icon" alt="image item"><span class="tile-label">Tivi 4K
+                                cong</span>
+                        </button>
+                    </div>
+                    <div class="nextStep disable">
+                        <a href="#info-tivi" class="tcwNextBtn" id="next" title="next" value=""></a>
+                    </div>
+                    <div id="info-tivi" class="mt-3 info-device disable">
+                        <ul class="nav nav-tabs tab-container" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#tiviHD" role="tab"
+                                    aria-controls="tiviHD" aria-selected="false">Tivi HD</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#tivi4K" role="tab"
+                                    aria-controls="tivi4K" aria-selected="false">Tivi 4K</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade row" id="tiviHD" role="tabpanel" aria-labelledby="tiviHD-tab"
+                                style="
+                                min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-tiviHD">Số giờ sử dụng/ngày </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-tiviHD"
+                                                name="soGio-tiviHD" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-tiviHD">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-tiviHD"
+                                                name="soLuong-tiviHD" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade row" id="tivi4K" role="tabpanel" aria-labelledby="tivi4K-tab"
+                                style="
+                            min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-tivi4K">Số giờ sử dụng/ngày </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-tivi4K"
+                                                name="soGio-tivi4K" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-tivi4K">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-tivi4K"
+                                                name="soLuong-tivi4K" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-tivi" style="display: none;">Xác
+                        nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- may giat  -->
+    <div class="modal fade pr-0 show" id="modalMayGiat" tabindex="-1" role="dialog" aria-modal="true"
+        style="padding-right: 16px;">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content">
+                <div class="modal-header-full-width modal-header text-center">
+                    <h5 class="modal-title m-auto" id="exampleModalLabel">Máy giặt</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center mb-5" id="question">Chọn loại máy giặt bạn có ?</h4>
+                    <div class="listDetailDevice" id="list-mayGiat">
+                        <button tabindex="0" class="itemDevice" backimg="icon/mayGiat/mayGiatCuaDung.svg"
+                            backhoverimg="icon/mayGiat/mayGiatCuaDung-hover.svg" name="mayGiatCuaDung"><img
+                                class="tile-icon" alt="image item" src="icon/mayGiat/mayGiatCuaDung.svg"><span
+                                class="tile-label">Máy giặt cửa đứng</span>
+                        </button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/mayGiat/mayGiatCuaNgang.svg"
+                            backhoverimg="icon/mayGiat/mayGiatCuaNgang-hover.svg" name="mayGiatCuaNgang"><img
+                                class="tile-icon" alt="image item" src="icon/mayGiat/mayGiatCuaNgang.svg"><span
+                                class="tile-label">Máy
+                                giặt cửa
+                                ngang</span>
+                        </button>
+                    </div>
+                    <div class="nextStep disable">
+                        <a href="#info-mayGiat" class="tcwNextBtn" id="next" title="next" value=""></a>
+                    </div>
+                    <div id="info-mayGiat" class="mt-3 info-device disable">
+                        <ul class="nav nav-tabs tab-container" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#mayGiatCuaDung" role="tab"
+                                    aria-controls="mayGiatCuaDung" aria-selected="false">Máy giặt cửa đứng</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#mayGiatCuaNgang" role="tab"
+                                    aria-controls="mayGiatCuaNgang" aria-selected="false">Máy giặt cửa ngang</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade row" id="mayGiatCuaDung" role="tabpanel"
+                                aria-labelledby="mayGiatCuaDung-tab" style="
+                                min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-mayGiatCuaDung">Số giờ sử dụng/ngày
+                                        </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-mayGiatCuaDung"
+                                                name="soGio-mayGiatCuaDung" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-mayGiatCuaDung">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-mayGiatCuaDung"
+                                                name="soLuong-mayGiatCuaDung" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade row" id="mayGiatCuaNgang" role="tabpanel"
+                                aria-labelledby="mayGiatCuaNgang-tab" style="
+                            min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-mayGiatCuaNgang">Số giờ sử dụng/ngày
+                                        </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-mayGiatCuaNgang"
+                                                name="soGio-mayGiatCuaNgang" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-mayGiatCuaNgang">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-mayGiatCuaNgang"
+                                                name="soLuong-mayGiatCuaNgang" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-mayGiat" style="display: none;">Xác
+                        nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- quat may  -->
+    <div class="modal fade pr-0 show" id="modalQuat" tabindex="-1" style="padding-right: 16px;" aria-modal="true"
+        role="dialog">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content">
+                <div class="modal-header-full-width modal-header text-center">
+                    <h5 class="modal-title m-auto" id="exampleModalLabel">Quạt máy</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center mb-5" id="question">Chọn loại quạt máy bạn có ?</h4>
+                    <div class="listDetailDevice" id="list-quat">
+                        <button tabindex="0" class="itemDevice" backimg="icon/quat/quatTran.svg"
+                            backhoverimg="icon/quat/quatTran-hover.svg" name="quatTran"><img class="tile-icon"
+                                alt="image item" src="icon/quat/quatTran.svg"><span class="tile-label">Quạt trần</span>
+                        </button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/quat/quatCay.svg"
+                            backhoverimg="icon/quat/quatCay-hover.svg" name="quatCay"><img class="tile-icon"
+                                alt="image item" src="icon/quat/quatCay.svg"><span class="tile-label">Quạt cây</span>
+                        </button>
+                    </div>
+                    <div class="nextStep disable">
+                        <a href="#info-quat" class="tcwNextBtn" id="next" title="next" value=""></a>
+                    </div>
+                    <div id="info-quat" class="mt-3 info-device disable">
+                        <ul class="nav nav-tabs tab-container" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#quatTran" role="tab"
+                                    aria-controls="quatTran" aria-selected="false">Quạt trần</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#quatCay" role="tab"
+                                    aria-controls="quatCay" aria-selected="false">Quạt cây</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade row" id="quatTran" role="tabpanel" aria-labelledby="quatTran-tab"
+                                style="
+                                min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-quatTran">Số giờ sử dụng/ngày
+                                        </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-quatTran"
+                                                name="soGio-quatTran" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-quatTran">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-quatTran"
+                                                name="soLuong-quatTran" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade row" id="quatCay" role="tabpanel" aria-labelledby="quatCay-tab"
+                                style="
+                            min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-quatCay">Số giờ sử dụng/ngày
+                                        </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-quatCay"
+                                                name="soGio-quatCay" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-quatCay">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-quatCay"
+                                                name="soLuong-quatCay" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-quat" style="display: none;">Xác
+                        nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- dieu hoa  -->
+    <div class="modal fade pr-0" id="modalDieuHoa" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content">
+                <div class="modal-header-full-width modal-header text-center">
+                    <h5 class="modal-title m-auto" id="exampleModalLabel">Điều hòa
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center mb-5" id="question">Chọn loại điều hòa bạn có?</h4>
+                    <div class="listDetailDevice" id="list-dieuHoa">
+                        <button tabindex="0" class="itemDevice" backimg="icon/dieuHoa/dieuHoaAmTran.svg"
+                            backhoverimg="icon/dieuHoa/dieuHoaAmTran-hover.svg" name="dieuHoaAmTran"><img
+                                class="tile-icon" alt="image item"><span class="tile-label">Điều hòa âm
+                                trần</span>
+                        </button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/dieuHoa/dieuHoaTreoTuong.svg"
+                            backhoverimg="icon/dieuHoa/dieuHoaTreoTuong-hover.svg" name="dieuHoaTreoTuong"><img
+                                class="tile-icon" alt="image item"><span class="tile-label">Điều hòa
+                                tường</span>
+                        </button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/dieuHoa/dieuHoaCay.svg"
+                            backhoverimg="icon/dieuHoa/dieuHoaCay-hover.svg" name="dieuHoaCay"><img class="tile-icon"
+                                alt="image item"><span class="tile-label">Điều hòa cây</span>
+                        </button>
+                    </div>
+                    <div class="nextStep disable">
+                        <a href="#info-dieuHoa" class="tcwNextBtn next" title="next" value=""></a>
+                    </div>
+                    <div id="info-dieuHoa" class="mt-3 info-device disable">
+                        <ul class="nav nav-tabs tab-container" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#dieuHoaAmTran" role="tab"
+                                    aria-controls="dieuHoaAmTran" aria-selected="false">Điều hòa âm trần</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#dieuHoaTreoTuong" role="tab"
+                                    aria-controls="dieuHoaTreoTuong" aria-selected="false">Điều hòa treo tường</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#dieuHoaCay" role="tab"
+                                    aria-controls="dieuHoaCay" aria-selected="false">Điều hòa cây</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade row" id="dieuHoaAmTran" role="tabpanel"
+                                aria-labelledby="dieuHoaAmTran-tab">
+                                <div class="col-md-6 mb-4"
+                                    style="border-right: 1px solid #b6b6b6 !important; height: 400px;">
+                                    <div class="div-inline">
+                                        <label class="labelModal mx-auto" for="soGio-dieuHoaAmTran">Số giờ sử dụng/ngày
+                                        </label>
+                                    </div>
+                                    <div class="frame">
+                                        <div id="slider-dieuHoaAmTran" class="rslider"></div>
+                                        <div class="thermostat">
+                                            <div class="ring">
+                                                <div class="bottom_overlay"></div>
+                                            </div>
+                                            <div class="control">
+                                                <div class="temp_outside">Số giờ/ngày</div>
+                                                <div class="temp_room"></div>
+                                                <!-- <div class="room">/Ngày</div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="temperature-widget-wrapper">
+                                        <div class="temperature-question-wrapper">
+                                            <label class="labelModal mx-auto" for="temperature-dieuHoaAmTran">Nhiệt
+                                                độ
+                                                điều hòa của bạn?</label>
+                                            <!-- <input type="number" min="0" max="32" class="inputModal ml-4"
+                                                id="temperature-dieuHoaAmTran" value="18"> -->
+                                        </div>
+                                        <div class="temperature-widget-wrapper-2">
+                                            <input type="number" min="0" max="32" class="inputModal margin-temperature"
+                                                id="temperature-dieuHoaAmTran" value="18">
+                                            <div class="temperature-gauge-wrapper">
+                                                <div class="temperature-gauge"
+                                                    style="background-image: linear-gradient(-180deg, rgb(21, 156, 212) 0%, rgb(47, 42, 149) 50%, rgb(78, 34, 141) 100%);">
+                                                    <svg class="graduations" width="62" height="245">
+                                                        <g stroke="#FFF" stroke-width="3" fill="none"
+                                                            fill-rule="evenodd">
+                                                            <path d="M34.015 33.585H59.93M34.21 182.379h25.72"
+                                                                stroke-linecap="round"></path>
+                                                            <path d="M2.281 107.982H59.93" stroke-linecap="square">
+                                                            </path>
+                                                            <path
+                                                                d="M33.748 47.427h26.184M33.748 2.442h26.184M33.748 196.22h26.184M34.34 121.823h26.184M33.748 62.998h26.184M33.748 18.014h26.184M33.748 211.792h26.184M34.34 137.395h26.184M33.748 78.57h26.184M33.748 227.363h26.184M34.34 151.236h26.184M33.748 92.41h26.184M33.748 242.935h26.184m-26.184-76.127h26.184"
+                                                                stroke-linecap="round"></path>
+                                                        </g>
+                                                    </svg>
+                                                    <div class="temperature-gauge-label" id="label-dieuHoaAmTran">
+                                                        18<span class="unit">°</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="counter-buttons">
+                                                <svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1"
+                                                    xmlnsXlink="http://www.w3.org/1999/xlink" opacity="1"
+                                                    cursor="pointer" pointer-events="normal"
+                                                    class="pulse temperature-up">
+                                                    <g transform="translate(-93.000000, -1861.000000) translate(0.000000, 1052.000000) translate(16.000000, 809.000000)"
+                                                        stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect fill="#f2bf38" x="77" y="0" width="45" height="45"
+                                                            rx="22.5">
+                                                        </rect>
+                                                        <path d="M100 10v26M87 23h26" stroke="#1b2e5a" stroke-width="4"
+                                                            stroke-linecap="round"></path>
+                                                    </g>
+                                                </svg>
+                                                <svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1"
+                                                    xmlnsXlink="http://www.w3.org/1999/xlink" opacity="1"
+                                                    cursor="pointer" pointer-events="normal" class="temperature-down">
+                                                    <g transform="translate(-93.000000, -1914.000000) translate(0.000000, 1052.000000) translate(16.000000, 809.000000)"
+                                                        stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect fill="#f2bf38" x="77" y="53" width="45" height="45"
+                                                            rx="22.5">
+                                                        </rect>
+                                                        <path d="M87,76 L113,76" stroke="#1b2e5a" stroke-width="4"
+                                                            stroke-linecap="round"></path>
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade row" id="dieuHoaTreoTuong" role="tabpanel"
+                                aria-labelledby="dieuHoaTreoTuong-tab">
+                                <div class="col-md-6 mb-4"
+                                    style="border-right: 1px solid #b6b6b6 !important; height: 400px;">
+                                    <div class="div-inline">
+                                        <label class="labelModal mx-auto" for="soGio-dieuHoaTreoTuong">Số giờ sử
+                                            dụng/ngày
+                                        </label>
+                                    </div>
+                                    <div class="frame">
+                                        <div id="slider-dieuHoaTreoTuong" class="rslider"></div>
+                                        <div class="thermostat">
+                                            <div class="ring">
+                                                <div class="bottom_overlay"></div>
+                                            </div>
+                                            <div class="control">
+                                                <div class="temp_outside">Số giờ/ngày</div>
+                                                <div class="temp_room"></div>
+                                                <!-- <div class="room">/Ngày</div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="temperature-widget-wrapper">
+                                        <div class="temperature-question-wrapper">
+                                            <label class="labelModal mx-auto" for="temperature-dieuHoaTreoTuong"
+                                                style="text-align: left;">Nhiệt
+                                                độ
+                                                điều hòa của bạn?</label>
+                                        </div>
+                                        <div class="temperature-widget-wrapper-2">
+                                            <input type="number" min="0" max="32" class="inputModal margin-temperature"
+                                                id="temperature-dieuHoaTreoTuong" value="18">
+                                            <div class="temperature-gauge-wrapper">
+                                                <div class="temperature-gauge"
+                                                    style="background-image: linear-gradient(-180deg, rgb(21, 156, 212) 0%, rgb(47, 42, 149) 50%, rgb(78, 34, 141) 100%);">
+                                                    <svg class="graduations" width="62" height="245">
+                                                        <g stroke="#FFF" stroke-width="3" fill="none"
+                                                            fill-rule="evenodd">
+                                                            <path d="M34.015 33.585H59.93M34.21 182.379h25.72"
+                                                                stroke-linecap="round"></path>
+                                                            <path d="M2.281 107.982H59.93" stroke-linecap="square">
+                                                            </path>
+                                                            <path
+                                                                d="M33.748 47.427h26.184M33.748 2.442h26.184M33.748 196.22h26.184M34.34 121.823h26.184M33.748 62.998h26.184M33.748 18.014h26.184M33.748 211.792h26.184M34.34 137.395h26.184M33.748 78.57h26.184M33.748 227.363h26.184M34.34 151.236h26.184M33.748 92.41h26.184M33.748 242.935h26.184m-26.184-76.127h26.184"
+                                                                stroke-linecap="round"></path>
+                                                        </g>
+                                                    </svg>
+                                                    <div class="temperature-gauge-label" id="label-dieuHoaTreoTuong">
+                                                        18<span class="unit">°</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="counter-buttons">
+                                                <svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1"
+                                                    xmlnsXlink="http://www.w3.org/1999/xlink" opacity="1"
+                                                    cursor="pointer" pointer-events="normal"
+                                                    class="pulse temperature-up">
+                                                    <g transform="translate(-93.000000, -1861.000000) translate(0.000000, 1052.000000) translate(16.000000, 809.000000)"
+                                                        stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect fill="#f2bf38" x="77" y="0" width="45" height="45"
+                                                            rx="22.5">
+                                                        </rect>
+                                                        <path d="M100 10v26M87 23h26" stroke="#1b2e5a" stroke-width="4"
+                                                            stroke-linecap="round"></path>
+                                                    </g>
+                                                </svg>
+                                                <svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1"
+                                                    xmlnsXlink="http://www.w3.org/1999/xlink" opacity="1"
+                                                    cursor="pointer" pointer-events="normal" class="temperature-down">
+                                                    <g transform="translate(-93.000000, -1914.000000) translate(0.000000, 1052.000000) translate(16.000000, 809.000000)"
+                                                        stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect fill="#f2bf38" x="77" y="53" width="45" height="45"
+                                                            rx="22.5">
+                                                        </rect>
+                                                        <path d="M87,76 L113,76" stroke="#1b2e5a" stroke-width="4"
+                                                            stroke-linecap="round"></path>
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade row" id="dieuHoaCay" role="tabpanel"
+                                aria-labelledby="dieuHoaCay-tab">
+                                <div class="col-md-6 mb-4"
+                                    style="border-right: 1px solid #b6b6b6 !important; height: 400px;">
+                                    <div class="div-inline">
+                                        <label class="labelModal mx-auto" for="soGio-dieuHoaCay">Số giờ sử dụng/ngày
+                                        </label>
+                                    </div>
+                                    <div class="frame">
+                                        <div id="slider-dieuHoaCay" class="rslider"></div>
+                                        <div class="thermostat">
+                                            <div class="ring">
+                                                <div class="bottom_overlay"></div>
+                                            </div>
+                                            <div class="control">
+                                                <div class="temp_outside">Số giờ/ngày</div>
+                                                <div class="temp_room"></div>
+                                                <!-- <div class="room">/Ngày</div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="temperature-widget-wrapper">
+                                        <div class="temperature-question-wrapper">
+                                            <label class="labelModal mx-auto" for="temperature-dieuHoaCay"
+                                                style="text-align: left;">Nhiệt
+                                                độ
+                                                điều hòa của bạn?</label>
+                                        </div>
+                                        <div class="temperature-widget-wrapper-2">
+                                            <input type="number" min="0" max="32" class="inputModal margin-temperature"
+                                                id="temperature-dieuHoaCay" value="18">
+                                            <div class="temperature-gauge-wrapper">
+                                                <div class="temperature-gauge"
+                                                    style="background-image: linear-gradient(-180deg, rgb(21, 156, 212) 0%, rgb(47, 42, 149) 50%, rgb(78, 34, 141) 100%);">
+                                                    <svg class="graduations" width="62" height="245">
+                                                        <g stroke="#FFF" stroke-width="3" fill="none"
+                                                            fill-rule="evenodd">
+                                                            <path d="M34.015 33.585H59.93M34.21 182.379h25.72"
+                                                                stroke-linecap="round"></path>
+                                                            <path d="M2.281 107.982H59.93" stroke-linecap="square">
+                                                            </path>
+                                                            <path
+                                                                d="M33.748 47.427h26.184M33.748 2.442h26.184M33.748 196.22h26.184M34.34 121.823h26.184M33.748 62.998h26.184M33.748 18.014h26.184M33.748 211.792h26.184M34.34 137.395h26.184M33.748 78.57h26.184M33.748 227.363h26.184M34.34 151.236h26.184M33.748 92.41h26.184M33.748 242.935h26.184m-26.184-76.127h26.184"
+                                                                stroke-linecap="round"></path>
+                                                        </g>
+                                                    </svg>
+                                                    <div class="temperature-gauge-label" id="label-dieuHoaCay">
+                                                        18<span class="unit">°</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="counter-buttons">
+                                                <svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1"
+                                                    xmlnsXlink="http://www.w3.org/1999/xlink" opacity="1"
+                                                    cursor="pointer" pointer-events="normal"
+                                                    class="pulse temperature-up">
+                                                    <g transform="translate(-93.000000, -1861.000000) translate(0.000000, 1052.000000) translate(16.000000, 809.000000)"
+                                                        stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect fill="#f2bf38" x="77" y="0" width="45" height="45"
+                                                            rx="22.5">
+                                                        </rect>
+                                                        <path d="M100 10v26M87 23h26" stroke="#1b2e5a" stroke-width="4"
+                                                            stroke-linecap="round"></path>
+                                                    </g>
+                                                </svg>
+                                                <svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1"
+                                                    xmlnsXlink="http://www.w3.org/1999/xlink" opacity="1"
+                                                    cursor="pointer" pointer-events="normal" class="temperature-down">
+                                                    <g transform="translate(-93.000000, -1914.000000) translate(0.000000, 1052.000000) translate(16.000000, 809.000000)"
+                                                        stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect fill="#f2bf38" x="77" y="53" width="45" height="45"
+                                                            rx="22.5">
+                                                        </rect>
+                                                        <path d="M87,76 L113,76" stroke="#1b2e5a" stroke-width="4"
+                                                            stroke-linecap="round"></path>
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-dieuHoa">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- may say  -->
+    <div class="modal fade pr-0 show" id="modalMaySay" tabindex="-1" style="padding-right: 16px;" aria-modal="true"
+        role="dialog">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content">
+                <div class="modal-header-full-width modal-header text-center">
+                    <h5 class="modal-title m-auto" id="exampleModalLabel">Máy sấy</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center mb-5" id="question">Chọn loại máy sấy bạn có ?</h4>
+                    <div class="listDetailDevice" id="list-maySay">
+                        <button tabindex="0" class="itemDevice" backimg="icon/maySay/maySayToc.svg"
+                            backhoverimg="icon/maySay/maySayToc-hover.svg" name="maySayToc"><img class="tile-icon"
+                                alt="image item" src="icon/maySay/maySayToc.svg"><span class="tile-label">Máy sấy
+                                tóc</span>
+                        </button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/maySay/maySayQuanAo.svg"
+                            backhoverimg="icon/maySay/maySayQuanAo-hover.svg" name="maySayQuanAo"><img class="tile-icon"
+                                alt="image item" src="icon/maySay/maySayQuanAo.svg"><span class="tile-label">Máy sấy
+                                quần áo</span>
+                        </button>
+                    </div>
+                    <div class="nextStep disable">
+                        <a href="#info-maySay" class="tcwNextBtn" id="next" title="next" value=""></a>
+                    </div>
+                    <div id="info-maySay" class="mt-3 info-device disable">
+                        <ul class="nav nav-tabs tab-container" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#maySayToc" role="tab"
+                                    aria-controls="maySayToc" aria-selected="false">Máy sấy tóc</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#maySayQuanAo" role="tab"
+                                    aria-controls="maySayQuanAo" aria-selected="false">Máy sấy quần áo</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade row" id="maySayToc" role="tabpanel"
+                                aria-labelledby="maySayToc-tab" style="
+                                min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-maySayToc">Số giờ sử dụng/ngày
+                                        </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-maySayToc"
+                                                name="soGio-maySayToc" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-maySayToc">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-maySayToc"
+                                                name="soLuong-maySayToc" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade row" id="maySayQuanAo" role="tabpanel"
+                                aria-labelledby="maySayQuanAo-tab" style="
+                            min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-maySayQuanAo">Số giờ sử dụng/ngày
+                                        </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-maySayQuanAo"
+                                                name="soGio-maySayQuanAo" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-maySayQuanAo">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-maySayQuanAo"
+                                                name="soLuong-maySayQuanAo" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-maySay" style="display: none;">Xác
+                        nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- may rua bat  -->
+    <div class="modal fade pr-0 show" id="modalMayRuaBat" tabindex="-1" style="padding-right: 16px;" aria-modal="true"
+        role="dialog">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content">
+                <div class="modal-header-full-width modal-header text-center">
+                    <h5 class="modal-title m-auto" id="exampleModalLabel">Máy rửa bát
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- <h5 class="text-center mb-5" id="question">Chọn loại máy rửa bát bạn có ?</h5>
+                    <div class="listDetailDevice" id="listDetailDevice"><button tabindex="0" class="itemDevice"
+                            backimg="image/icon_colour_lighting.svg" backhoverimg="image/icon_lighting_white.svg"><img
+                                class="tile-icon" alt="image item" src="image/icon_colour_lighting.svg"><span
+                                class="tile-label">Máy rửa bát
+                                Elec</span></button></div>
+                    <div class="nextStep disable">
+                        <a href="#info-mayRuaBat" class="tcwNextBtn" id="next" title="next" value=""></a>
+                    </div>
+                    <div id="info-mayRuaBat" class="row mt-3 info-device disable" style="height: 200px;">
+                        <div class="col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                            <div class="div-inline float-right quantity">
+                                <label class="labelModal" for="soGio">Số giờ sử dụng/ngày </label>
+                                <div class="div-inline">
+                                    <input class="inputModal" type="number" id="soGio" name="soGio" min="1" value="1">
+                                    <div class="icon-up-down">
+                                        <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                        <br>
+                                        <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="div-inline quantity">
+                                <label class="labelModal" for="soLuong">Số lượng </label>
+                                <div class="div-inline">
+                                    <input class="inputModal" type="number" id="soLuong" name="soLuong" min="1"
+                                        value="1">
+                                    <div class="icon-up-down">
+                                        <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                        <br>
+                                        <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="mb-5" style="height: 400px;">
+                        <div class="div-inline">
+                            <div class="m-auto">
+                                <label class="labelModal" for="number-soGio-mayRuaBat">Số giờ sử dụng mỗi tuần
+                                </label>
+                                <!-- <div id="number-soBong">0</div> -->
+                                <input class="inputModal" type="number" class="form-control" id="number-soGio-mayRuaBat"
+                                    name="number-soGio-mayRuaBat" min="1" max="50" value="1">
+                            </div>
+                        </div>
+                        <div class="frame">
+                            <div class="range-vertical" style="top: 50%">
+                                <input type="range" min="1" max="50" value="1" step="0.5" id="soGio-mayRuaBat">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-mayRuaBat">Xác
+                        nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- binh nong lanh  -->
+    <div class="modal fade pr-0 show" id="modalBinhNongLanh" tabindex="-1" style="padding-right: 16px;"
+        aria-modal="true" role="dialog">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content">
+                <div class="modal-header-full-width modal-header text-center">
+                    <h5 class="modal-title m-auto" id="exampleModalLabel">Bình nóng lạnh
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center mb-5" id="question">Chọn loại bình nóng lạnh bạn có ?</h4>
+                    <div class="listDetailDevice" id="list-binhNongLanh">
+                        <button tabindex="0" class="itemDevice" backimg="icon/binhNongLanh/binhNongLanh15.svg"
+                            backhoverimg="icon/binhNongLanh/binhNongLanh15-hover.svg" name="binhNongLanh15"><img
+                                class="tile-icon" alt="image item" src="icon/binhNongLanh/binhNongLanh15.svg"><span
+                                class="tile-label">Bình 15 lít</span>
+                        </button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/binhNongLanh/binhNongLanh20.svg"
+                            backhoverimg="icon/binhNongLanh/binhNongLanh20-hover.svg" name="binhNongLanh20"><img
+                                class="tile-icon" alt="image item" src="icon/binhNongLanh/binhNongLanh20.svg"><span
+                                class="tile-label">Bình 20 lít</span>
+                        </button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/binhNongLanh/binhNongLanh30.svg"
+                            backhoverimg="icon/binhNongLanh/binhNongLanh30-hover.svg" name="binhNongLanh30"><img
+                                class="tile-icon" alt="image item" src="icon/binhNongLanh/binhNongLanh30.svg"><span
+                                class="tile-label">Bình 30 lít</span>
+                        </button>
+                    </div>
+                    <div class="nextStep disable">
+                        <a href="#info-binhNongLanh" class="tcwNextBtn" id="next" title="next" value=""></a>
+                    </div>
+                    <div id="info-binhNongLanh" class="mt-3 info-device disable">
+                        <ul class="nav nav-tabs tab-container" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#binhNongLanh15" role="tab"
+                                    aria-controls="binhNongLanh15" aria-selected="false">Bình 15 lít</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#binhNongLanh20" role="tab"
+                                    aria-controls="binhNongLanh20" aria-selected="false">Bình 20 lít</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#binhNongLanh30" role="tab"
+                                    aria-controls="binhNongLanh30" aria-selected="false">Bình 30 lít</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade row" id="binhNongLanh15" role="tabpanel"
+                                aria-labelledby="binhNongLanh15-tab" style="
+                                min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-binhNongLanh15">Số giờ sử dụng/ngày
+                                        </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-binhNongLanh15"
+                                                name="soGio-binhNongLanh15" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-binhNongLanh15">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-binhNongLanh15"
+                                                name="soLuong-binhNongLanh15" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade row" id="binhNongLanh20" role="tabpanel"
+                                aria-labelledby="binhNongLanh20-tab" style="
+                            min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-binhNongLanh20">Số giờ sử dụng/ngày
+                                        </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-binhNongLanh20"
+                                                name="soGio-binhNongLanh20" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-binhNongLanh20">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-binhNongLanh20"
+                                                name="soLuong-binhNongLanh20" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade row" id="binhNongLanh30" role="tabpanel"
+                                aria-labelledby="binhNongLanh30-tab" style="
+                            min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-binhNongLanh30">Số giờ sử dụng/ngày
+                                        </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-binhNongLanh30"
+                                                name="soGio-binhNongLanh30" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-binhNongLanh20">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-binhNongLanh30"
+                                                name="soLuong-binhNongLanh30" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-binhNongLanh" style="display: none;">Xác
+                        nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="main.js"></script>
+<script src="info.js"></script>
+
+</html>
