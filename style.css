@@ -6,6 +6,10 @@ body{
     background-color: rgb(248, 246, 247);
 }
 
+label{
+    margin-bottom: 0;
+}
+
 input:focus {
     outline: none !important;
     border:2px solid #05479D;
@@ -19,6 +23,10 @@ input:focus {
 .disable{
     pointer-events: none;
     opacity: 0.4;
+}
+
+.disable2{
+    pointer-events: none;
 }
 
 .btn-blue{

@@ -809,6 +809,22 @@ var notiValidate = function notiValidate() {
     title: 'Yêu cầu',
     text: 'Yêu cầu điền một số, không có dấu hay ký tự đặc biệt'
   });
+}; //click bat ca ngay
+
+
+var check24h = function check24h(name) {
+  $('#check-' + name).click(function () {
+    if ($(this).prop('checked')) {
+      $('#soGio-' + name).val(24);
+      $('#soGio-' + name).addClass('disable2');
+      $('#soGio-' + name).parent().find('.icon-up').addClass('disable2');
+      $('#soGio-' + name).parent().find('.icon-down').addClass('disable2');
+    } else {
+      $('#soGio-' + name).removeClass('disable2');
+      $('#soGio-' + name).parent().find('.icon-up').removeClass('disable2');
+      $('#soGio-' + name).parent().find('.icon-down').removeClass('disable2');
+    }
+  });
 }; //modal bep dien
 
 
@@ -878,6 +894,8 @@ $(document).ready(function () {
         return;
       } else if (checkInputValidate2("denSoiDot", info)) {
         return;
+      } else if (checkInputValidate2("denHalogen", info)) {
+        return;
       } else {
         button.find('.valueTxt').text(Math.floor(Math.random() * 1000 + 100));
         button.find('.listarrow').removeClass('listarrow').addClass('device-confirmed');
@@ -893,7 +911,7 @@ $(document).ready(function () {
       }
     });
   });
-  $("#slider-denHuynhQuang, #slider-denLed, #slider-denSoiDot").roundSlider({
+  $("#slider-denHuynhQuang, #slider-denLed, #slider-denSoiDot, #slider-denHalogen").roundSlider({
     radius: 85,
     circleShape: "half-top",
     sliderType: "min-range",
@@ -921,9 +939,16 @@ $(document).ready(function () {
   $('#number-soBong-denSoiDot').keyup(function () {
     $('#soBong-denSoiDot').val($('#number-soBong-denSoiDot').val());
   });
+  $('#soBong-denHalogen').on('input', function () {
+    $('#number-soBong-denHalogen').val($('#soBong-denHalogen').val());
+  });
+  $('#number-soBong-denHalogen').keyup(function () {
+    $('#soBong-denHalogen').val($('#number-soBong-denHalogen').val());
+  });
   addOrDeleteDevice('denHuynhQuang', info);
   addOrDeleteDevice('denLed', info);
   addOrDeleteDevice('denSoiDot', info);
+  addOrDeleteDevice('denHalogen', info);
   checkActiveModal('den');
   clickCheckActiveModal('den');
 });
@@ -1120,6 +1145,57 @@ $('#modalQuat').on('show.bs.modal', function (event) {
   }
 
   checkActiveModal('quat');
+}); //modal lo nuong
+
+$(document).ready(function () {
+  var info = 'info-loNuong';
+  $('#btn-loNuong').click(function () {
+    var button = $(this); // console.log(idBtnToChange);
+
+    $('#btn-xn-loNuong').click(function () {
+      if (checkInputValidate('lo1', info)) {
+        return;
+      } else if (checkInputValidate('lo2', info)) {
+        return;
+      }
+
+      button.find('.valueTxt').text(Math.floor(Math.random() * 1000 + 100));
+      button.find('.listarrow').removeClass('listarrow').addClass('device-confirmed');
+      button.find('.valueTxt').css("display", "block");
+      button.find('.unitDevice').css("display", "block");
+      button.find(".recommend").css("display", "block");
+      button.find(".listname").css("padding-top", "15px");
+      button.attr("title", button.find(".recommend").text());
+      button.attr("data-toggle", "tooltip");
+      button.tooltip();
+      $('.modal').modal('hide');
+      $('#btn-calcu').css("display", "block");
+    });
+  });
+  addOrDeleteDevice('lo1', info);
+  addOrDeleteDevice('lo2', info);
+  checkActiveModal('loNuong');
+  clickCheckActiveModal('loNuong');
+});
+$('#modalBep').on('show.bs.modal', function (event) {
+  // var button = $(event.relatedTarget);
+  // console.log(button.data('choice'));
+  // if (button.hasClass("clicked")) {
+  //     return;
+  // } else {
+  //     activeBtn();
+  // }
+  // button.addClass("clicked");
+  var list = $('.itemDevice');
+
+  for (var i = 0; i < list.length; i++) {
+    if (list.eq(i).hasClass('activeModal')) {
+      var url = list.eq(i).attr("backhoverimg");
+      list.eq(i).find(".tile-icon").attr('src', url);
+    }
+  }
+
+  checkActiveModal('bep');
 }); // modal dieu hoa 
 
 $(document).ready(function () {
@@ -1398,6 +1474,9 @@ $(document).ready(function () {
   addOrDeleteDevice('binhNongLanh30', info);
   checkActiveModal('binhNongLanh');
   clickCheckActiveModal('binhNongLanh');
+  check24h('binhNongLanh15');
+  check24h('binhNongLanh20');
+  check24h('binhNongLanh30');
 });
 $('#modalBinhNongLanh').on('show.bs.modal', function (event) {
   var list = $('.itemDevice');
