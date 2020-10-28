@@ -1017,49 +1017,46 @@ $('#modalTuLanh').on('show.bs.modal', function (event) {
     }
   }
 }); //modal tivi
-
-$(document).ready(function () {
-  var info = 'info-tivi';
-  $('#btn-tivi').click(function () {
-    var button = $(this); // console.log(idBtnToChange);
-
-    $('#btn-xn-tivi').click(function () {
-      if (checkInputValidate("tiviHD", info)) {
-        return;
-      } else if (checkInputValidate("tivi4K", info)) {
-        return;
-      }
-
-      button.find('.valueTxt').text(Math.floor(Math.random() * 1000 + 100));
-      button.find('.listarrow').removeClass('listarrow').addClass('device-confirmed');
-      button.find('.valueTxt').css("display", "block");
-      button.find('.unitDevice').css("display", "block");
-      button.find(".recommend").css("display", "block");
-      button.find(".listname").css("padding-top", "15px");
-      button.attr("title", button.find(".recommend").text());
-      button.attr("data-toggle", "tooltip");
-      button.tooltip();
-      $('.modal').modal('hide');
-      $('#btn-calcu').css("display", "block");
-    });
-  });
-  addOrDeleteDevice('tiviHD', info);
-  addOrDeleteDevice('tivi4K', info);
-  checkActiveModal('tivi');
-  clickCheckActiveModal('tivi');
-});
-$('#modalTivi').on('show.bs.modal', function (event) {
-  var list = $('.itemDevice');
-
-  for (var i = 0; i < list.length; i++) {
-    if (list.eq(i).hasClass('activeModal')) {
-      var url = list.eq(i).attr("backhoverimg");
-      list.eq(i).find(".tile-icon").attr('src', url);
-    }
-  }
-
-  checkActiveModal('tivi');
-}); //modal may giat
+// $(document).ready(function () {
+//     var info = 'info-tivi';
+//     $('#btn-tivi').click(function () {
+//         var button = $(this);
+//         // console.log(idBtnToChange);
+//         $('#btn-xn-tivi').click(function () {
+//             if (checkInputValidate("tiviHD", info)) {
+//                 return;
+//             } else if (checkInputValidate("tivi4K", info)) {
+//                 return;
+//             }
+//             button.find('.valueTxt').text(Math.floor((Math.random() * 1000) + 100));
+//             button.find('.listarrow').removeClass('listarrow').addClass('device-confirmed');
+//             button.find('.valueTxt').css("display", "block");
+//             button.find('.unitDevice').css("display", "block");
+//             button.find(".recommend").css("display", "block");
+//             button.find(".listname").css("padding-top", "15px");
+//             button.attr("title", button.find(".recommend").text());
+//             button.attr("data-toggle", "tooltip");
+//             button.tooltip();
+//             $('.modal').modal('hide');
+//             $('#btn-calcu').css("display", "block");
+//         });
+//     });
+//     addOrDeleteDevice('tiviHD', info);
+//     addOrDeleteDevice('tivi4K', info);
+//     checkActiveModal('tivi');
+//     clickCheckActiveModal('tivi');
+// });
+// $('#modalTivi').on('show.bs.modal', function (event) {
+//     var list = $('.itemDevice');
+//     for (var i = 0; i < list.length; i++) {
+//         if (list.eq(i).hasClass('activeModal')) {
+//             var url = list.eq(i).attr("backhoverimg");
+//             list.eq(i).find(".tile-icon").attr('src', url);
+//         }
+//     }
+//     checkActiveModal('tivi');
+// });
+//modal may giat
 
 $(document).ready(function () {
   var info = 'info-mayGiat';
@@ -1102,17 +1099,21 @@ $('#modalMayGiat').on('show.bs.modal', function (event) {
   }
 
   checkActiveModal('mayGiat');
-}); //modal quat may
+}); //modal thiet bi khac
 
 $(document).ready(function () {
-  var info = 'info-quat';
-  $('#btn-quat').click(function () {
+  var info = 'info-tbk';
+  $('#btn-tbk').click(function () {
     var button = $(this); // console.log(idBtnToChange);
 
-    $('#btn-xn-quat').click(function () {
+    $('#btn-xn-tbk').click(function () {
       if (checkInputValidate("quatTran", info)) {
         return;
       } else if (checkInputValidate("quatCay", info)) {
+        return;
+      } else if (checkInputValidate("tiviHD", info)) {
+        return;
+      } else if (checkInputValidate("tivi4K", info)) {
         return;
       }
 
@@ -1131,8 +1132,10 @@ $(document).ready(function () {
   });
   addOrDeleteDevice('quatTran', info);
   addOrDeleteDevice('quatCay', info);
-  checkActiveModal('quat');
-  clickCheckActiveModal('quat');
+  addOrDeleteDevice('tiviHD', info);
+  addOrDeleteDevice('tivi4K', info);
+  checkActiveModal('tbk');
+  clickCheckActiveModal('tbk');
 });
 $('#modalQuat').on('show.bs.modal', function (event) {
   var list = $('.itemDevice');

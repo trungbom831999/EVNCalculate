@@ -34,10 +34,10 @@
     <!-- header -->
     <div id="form-input">
         <div class="row" id="list-input">
-            <div class="col-md-3 text-center">
+            <div class="col-md-2 text-center">
                 <img class="pl-2" src="image/imgInput.png" alt="Bảo vệ người sử dụng">
             </div>
-            <div class="col-md-6 text-center">
+            <div class="col-md-8 text-center">
                 <h5>Thông tin người sử dụng điện</h5>
                 <div id="no-info" style="display: block;">
                     <p style="opacity: 0.6;">Thông tin người sử dụng điện</p>
@@ -48,13 +48,16 @@
                     <p id="fill-email"></p>
                     <p id="fill-area"></p>
                     <div class="div-inline">
+
                         <p id="fill-house"></p>
+                        <p id="fill-bedroom"></p>
+                        <p id="fill-bathroom"></p>
                         <p id="fill-adults"></p>
                         <p id="fill-children"></p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 text-center p-md-4">
+            <div class="col-md-2 text-center p-md-4">
                 <button id="btn-accept" class="btn btn-primary btn-blue" data-toggle="modal"
                     data-target="#modalInfoCustomer">
                     <p style="margin: 0 -5px">Nhập thông tin</p>
@@ -66,8 +69,8 @@
             <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
                 <div class="modal-content-full-width modal-content">
                     <div class="modal-header-full-width modal-header text-center">
-                        <h5 class="modal-title text-uppercase font-weight-bold m-auto" id="exampleModalLabel">Nhập thông
-                            tin người dùng
+                        <h5 class="modal-title text-uppercase font-weight-bold m-auto" id="exampleModalLabel">Thông tin
+                            khách hàng sử dụng điện
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
@@ -78,17 +81,25 @@
                             <div id="info-first" class="mb-5 border-bot">
                                 <h5 class="text-center mb-5">Nhập thông tin cá nhân</h5>
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label for="name">Họ tên</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập họ tên">
+                                        <input type="text" class="form-control btn-lg" id="name"
+                                            placeholder="Nhập Họ tên">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label for="phone">Số điện thoại</label>
-                                        <input type="tel" class="form-control" id="phone" placeholder="Nhập sđt">
+                                        <input type="tel" class="form-control btn-lg" id="phone"
+                                            placeholder="Nhập Số điện thoại">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Nhập email">
+                                        <input type="email" class="form-control btn-lg" id="email"
+                                            placeholder="Nhập Email">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="makh">Mã khách hàng</label>
+                                        <input type="makh" class="form-control btn-lg" id="makh"
+                                            placeholder="Nhập Mã khách hàng">
                                     </div>
                                 </div>
                                 <!-- <div class="">
@@ -110,14 +121,53 @@
                                             cư</span></button>
                                 </div>
                                 <div class="nextStep" style="border-bottom: none !important;">
-                                    <a href="#info-people" class="tcwNextBtn next disable" title="next" value="">
+                                    <a href="#info-room" class="tcwNextBtn next disable" title="next" value="">
                                     </a>
                                 </div>
                             </div>
 
+                            <div id="info-room" class="my-5 border-bot disable">
+                                <div class="row py-4">
+                                    <div class="col-md-6">
+                                        <img class="img-people" src="image/room.png" alt="Số phòng">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="text-center my-4">Chọn số lượng phòng</h5>
+                                        <div class="listHouse">
+                                            <div>
+                                                <div class="div-inline quantity">
+                                                    <input class="inputModal" type="number" id="bedroom" name="adults"
+                                                        min="0" max="8" value="1">
+                                                    <div class="icon-up-down">
+                                                        <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                        <br>
+                                                        <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                                <h5 class="ml-4"><label for="bedroom">Phòng ngủ</label></h5>
+                                            </div>
+                                            <div>
+                                                <div class="div-inline quantity">
+                                                    <input class="inputModal" type="number" id="bathroom"
+                                                        name="children" min="0" max="8" value="1">
+                                                    <div class="icon-up-down">
+                                                        <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                        <br>
+                                                        <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                                <h5 class="ml-4"><label for="bathroom">Phòng tắm</label></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nextStep" style="border-bottom: none !important;">
+                                    <a href="#info-people" class="tcwNextBtn next disable" title="next" value=""></a>
+                                </div>
+                            </div>
+
                             <div id="info-people" class="my-5 border-bot disable">
-                                <div class="row py-4" style="background-color: #ffffff; box-shadow: 0 0 15px 0 hsla(0, 0%, 78%, .75);
-                                border-radius: 10px;">
+                                <div class="row py-4">
                                     <div class="col-md-6">
                                         <img class="img-people" src="image/people.png" alt="Số người">
                                     </div>
@@ -284,6 +334,26 @@
                 </div>
                 <div class="col-md-6 mb-1 pl-md-1 pr-md-4">
                     <div class="div-device">
+                        <button type="button" class="btn btn-white btn-device" id="btn-mayRuaBat"
+                            backimg="icon/mayRuaBat.svg" backhoverimg="icon/mayRuaBat-hover.svg" data-id="7">
+                            <a href="" data-toggle="modal" data-target="#modalMayRuaBat">
+                                <span class="iconBox" style="background-image: url('icon/mayRuaBat.svg');"></span>
+                                <span class="listname">
+                                    <span class="font28">Máy rửa bát</span>
+                                    <span id="recommend-mayRuaBat" class="font16 recommend">Bạn tiêu tốn thêm 15%
+                                        tiền</span>
+                                </span>
+                                <span class="listarrow">
+                                    <span class="valueTxt">-1</span>
+                                    <span class="unitDevice">kWh</span>
+                                </span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+
+                <!--div class="col-md-6 mb-1 pl-md-1 pr-md-4">
+                    <div class="div-device">
                         <button type="button" class="btn btn-white btn-device" id="btn-tivi" backimg="icon/tv.svg"
                             backhoverimg="icon/tv-hover.svg" data-id="5">
                             <a href="" data-toggle="modal" data-target="#modalTivi">
@@ -299,7 +369,7 @@
                             </a>
                         </button>
                     </div>
-                </div>
+                </div-->
                 <div class="col-md-6 mb-1 pl-md-4 pr-md-1">
                     <div class="div-device">
                         <button type="button" class="btn btn-white btn-device" id="btn-mayGiat"
@@ -321,13 +391,13 @@
                 </div>
                 <div class="col-md-6 mb-1 pl-md-1 pr-md-4">
                     <div class="div-device">
-                        <button type="button" class="btn btn-white btn-device" id="btn-quat" backimg="icon/quat.svg"
+                        <button type="button" class="btn btn-white btn-device" id="btn-tbk" backimg="icon/quat.svg"
                             backhoverimg="icon/quat-hover.svg" data-id="10">
-                            <a href="" data-toggle="modal" data-target="#modalQuat">
+                            <a href="" data-toggle="modal" data-target="#modalTbk">
                                 <span class="iconBox" style="background-image: url('icon/quat.svg');"></span>
                                 <span class="listname">
-                                    <span class="font28">Quạt máy</span>
-                                    <span id="recommend-quat" class="font16 recommend">Bạn tiết kiệm được 15%
+                                    <span class="font28">Thiết bị khác</span>
+                                    <span id="recommend-tbk" class="font16 recommend">Bạn tiết kiệm được 15%
                                         tiền</span>
                                 </span>
                                 <span class="listarrow">
@@ -338,26 +408,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="col-md-6 mb-1 pl-md-4 pr-md-1">
-                    <div class="div-device">
-                        <button type="button" class="btn btn-white btn-device" id="btn-loNuong"
-                            backimg="icon/loNuong.svg" backhoverimg="icon/loNuong-hover.svg" data-id="1">
-                            <a href="" data-toggle="modal" data-target="#modalLoNuong">
-                                <span class="iconBox" style="background-image: url('icon/loNuong.svg');"></span>
-                                <span class="listname">
-                                    <span class="font28">Lò nướng</span>
-                                    <span id="recommend-loNuong" class="font16 recommend">Bạn tiết kiệm được 11% so với
-                                        thực
-                                        tế</span>
-                                </span>
-                                <span class="listarrow">
-                                    <span class="valueTxt">-1</span>
-                                    <span class="unitDevice">kWh</span>
-                                </span>
-                            </a>
-                        </button>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div id="list-device-2">
@@ -402,26 +453,8 @@
                         </button>
                     </div>
                 </div>
+
                 <div class="col-md-6 mb-1 pl-md-4 pr-md-1">
-                    <div class="div-device">
-                        <button type="button" class="btn btn-white btn-device" id="btn-mayRuaBat"
-                            backimg="icon/mayRuaBat.svg" backhoverimg="icon/mayRuaBat-hover.svg" data-id="7">
-                            <a href="" data-toggle="modal" data-target="#modalMayRuaBat">
-                                <span class="iconBox" style="background-image: url('icon/mayRuaBat.svg');"></span>
-                                <span class="listname">
-                                    <span class="font28">Máy rửa bát</span>
-                                    <span id="recommend-mayRuaBat" class="font16 recommend">Bạn tiêu tốn thêm 15%
-                                        tiền</span>
-                                </span>
-                                <span class="listarrow">
-                                    <span class="valueTxt">-1</span>
-                                    <span class="unitDevice">kWh</span>
-                                </span>
-                            </a>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-1 pl-md-1 pr-md-4">
                     <div class="div-device">
                         <button type="button" class="btn btn-white btn-device" id="btn-binhNongLanh"
                             backimg="icon/binhNongLanh.svg" backhoverimg="icon/binhNongLanh-hover.svg" data-id="9">
@@ -440,11 +473,32 @@
                         </button>
                     </div>
                 </div>
+
+                <div class="col-md-6 mb-1 pl-md-1 pr-md-4">
+                    <div class="div-device">
+                        <button type="button" class="btn btn-white btn-device" id="btn-loNuong"
+                            backimg="icon/loNuong.svg" backhoverimg="icon/loNuong-hover.svg" data-id="1">
+                            <a href="" data-toggle="modal" data-target="#modalLoNuong">
+                                <span class="iconBox" style="background-image: url('icon/loNuong.svg');"></span>
+                                <span class="listname">
+                                    <span class="font28">Lò nướng</span>
+                                    <span id="recommend-loNuong" class="font16 recommend">Bạn tiết kiệm được 11% so với
+                                        thực
+                                        tế</span>
+                                </span>
+                                <span class="listarrow">
+                                    <span class="valueTxt">-1</span>
+                                    <span class="unitDevice">kWh</span>
+                                </span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="text-center mt-5">
             <a href="#calculate"><button type="button" class="btn btn-primary btn-calcu btn-blue mx-auto mb-3"
-                    id="btn-calcu">Tính hóa đơn</button></a>
+                    id="btn-calcu">Tính điện năng tiêu thụ</button></a>
         </div>
     </div>
 
@@ -543,7 +597,7 @@
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class="modal-header-full-width modal-header text-center">
-                    <h5 class="modal-title text-uppercase font-weight-bold m-auto" id="exampleModalLabel"></h5>
+                    <h3 class="modal-title text-uppercase font-weight-bold m-auto" id="exampleModalLabel"></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times"></i></span>
                     </button>
@@ -599,14 +653,14 @@
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class="modal-header-full-width modal-header text-center">
-                    <h5 class="modal-title m-auto" id="exampleModalLabel">Bếp điện
-                    </h5>
+                    <h3 class="modal-title m-auto" id="exampleModalLabel">Bếp điện
+                    </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-center mb-5" id="question">Chọn loại bếp điện bạn có ?</h4>
+                    <h5 class="text-center mb-5" id="question">Chọn loại bếp điện bạn có ?</h5>
                     <div class="listDetailDevice" id="list-bep">
                         <button tabindex="0" class="itemDevice" backimg="icon/bep/bepDien.svg"
                             backhoverimg="icon/bep/bepDien-hover.svg" name="bepDon"><img class="tile-icon"
@@ -711,15 +765,15 @@
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class="modal-header-full-width modal-header text-center">
-                    <h5 class="modal-title m-auto" id="exampleModalLabel">Đèn chiếu
+                    <h3 class="modal-title m-auto" id="exampleModalLabel">Đèn chiếu
                         sáng
-                    </h5>
+                    </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-center mb-5" id="question">Chọn loại đèn chiếu sáng bạn có ?</h4>
+                    <h5 class="text-center mb-5" id="question">Chọn loại đèn chiếu sáng bạn có ?</h5>
                     <div class="listDetailDevice" id="list-den">
                         <button tabindex="0" class="itemDevice" backimg="icon/den/denHuynhQuang.svg"
                             backhoverimg="icon/den/denHuynhQuang-hover.svg" name="denHuynhQuang"><img class="tile-icon"
@@ -936,99 +990,153 @@
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class="modal-header-full-width modal-header text-center">
-                    <h5 class="modal-title m-auto" id="exampleModalLabel">Tủ lạnh
-                    </h5>
+                    <h3 class="modal-title m-auto" id="exampleModalLabel">Tủ lạnh
+                    </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-center mb-5" id="question">Số lượng mỗi loại tủ lạnh của bạn</h4>
-                    <div class="listDetailDevice" id="list-tuLanh">
-                        <div class="mb-3">
-                            <label tabindex="0" class="itemDevice-nonHover" backimg="icon/tuLanh/tuLanhMini.svg"
-                                backhoverimg="icon/tuLanh/tuLanhMini-hover.svg" for="slTuLanhMini"><img
-                                    class="tile-icon" alt="image item" src="icon/tuLanh/tuLanhMini.svg"><span
-                                    class="tile-label text-center">Tủ lạnh
-                                    mini</span></label>
-                            <div class="div-inline quantity">
-                                <input class="inputModal" type="number" id="slTuLanhMini" name="slTuLanhMini" min="0"
-                                    max="10" value="0">
-                                <div class="icon-up-down">
-                                    <i class="fas fa-plus icon-up mb-1" aria-hidden="true"></i>
-                                    <br>
-                                    <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                    <h5 class="text-center mb-5" id="question">Số lượng mỗi loại tủ lạnh của bạn</h4>
+                        <div class="listDetailDevice" id="list-tuLanh">
+                            <div class="mb-3">
+                                <label tabindex="0" class="itemDevice-nonHover" backimg="icon/tuLanh/tuLanhMini.svg"
+                                    backhoverimg="icon/tuLanh/tuLanhMini-hover.svg" for="slTuLanhMini"><img
+                                        class="tile-icon" alt="image item" src="icon/tuLanh/tuLanhMini.svg"
+                                        style="width:80px;"><span class="tile-label text-center">Mini
+                                        (60-80)</span></label>
+                                <div class="div-inline quantity">
+                                    <input class="inputModal" type="number" id="slTuLanhMini" name="slTuLanhMini"
+                                        min="0" max="10" value="0">
+                                    <div class="icon-up-down">
+                                        <i class="fas fa-plus icon-up mb-1" aria-hidden="true"></i>
+                                        <br>
+                                        <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <label tabindex="0" class="itemDevice-nonHover" backimg="icon/tuLanh/tuLanhTrungBinh.svg"
-                                backhoverimg="icon/tuLanh/tuLanhTrungBinh-hover.svg" for="slTuLanhTrungBinh"><img
-                                    class="tile-icon" alt="image item" src="icon/tuLanh/tuLanhTrungBinh.svg"><span
-                                    class="tile-label text-center">Tủ lạnh trung
-                                    bình</span></label>
-                            <div class="div-inline quantity">
-                                <input class="inputModal" type="number" id="slTuLanhTrungBinh" name="slTuLanhTrungBinh"
-                                    min="0" max="10" value="0">
-                                <div class="icon-up-down">
-                                    <i class="fas fa-plus icon-up mb-1" aria-hidden="true"></i>
-                                    <br>
-                                    <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                            <div class="mb-3">
+                                <label tabindex="0" class="itemDevice-nonHover"
+                                    backimg="icon/tuLanh/tuLanhTrungBinh.svg"
+                                    backhoverimg="icon/tuLanh/tuLanhTrungBinh-hover.svg" for="slTuLanhTrungBinh"><img
+                                        class="tile-icon" alt="image item" src="icon/tuLanh/tuLanhTrungBinh.svg"
+                                        style="width:120px;"><span class="tile-label text-center">Trung bình
+                                        (90-180)</span></label>
+                                <div class="div-inline quantity">
+                                    <input class="inputModal" type="number" id="slTuLanhTrungBinh"
+                                        name="slTuLanhTrungBinh" min="0" max="10" value="0">
+                                    <div class="icon-up-down">
+                                        <i class="fas fa-plus icon-up mb-1" aria-hidden="true"></i>
+                                        <br>
+                                        <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <label tabindex="0" class="itemDevice-nonHover" backimg="icon/tuLanh/tuLanhLon.svg"
-                                backhoverimg="icon/tuLanh/tuLanhLon-hover.svg" for="slTuLanhLon"><img class="tile-icon"
-                                    alt="image item" src="icon/tuLanh/tuLanhLon.svg"><span
-                                    class="tile-label text-center">Tủ lạnh
-                                    lớn</span></label>
-                            <div class="div-inline quantity">
-                                <input class="inputModal" type="number" id="slTuLanhLon" name="slTuLanhLon" min="0"
-                                    max="10" value="0">
-                                <div class="icon-up-down">
-                                    <i class="fas fa-plus icon-up mb-1" aria-hidden="true"></i>
-                                    <br>
-                                    <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                            <div class="mb-3">
+                                <label tabindex="0" class="itemDevice-nonHover" backimg="icon/tuLanh/tuLanhLon.svg"
+                                    backhoverimg="icon/tuLanh/tuLanhLon-hover.svg" for="slTuLanhLon"><img
+                                        class="tile-icon" alt="image item" src="icon/tuLanh/tuLanhLon.svg"
+                                        style="width:160px;"><span class="tile-label text-center">Lớn
+                                        (190-450)</span></label>
+                                <div class="div-inline quantity">
+                                    <input class="inputModal" type="number" id="slTuLanhCucLon" name="slTuLanhCucLon"
+                                        min="0" max="10" value="0">
+                                    <div class="icon-up-down">
+                                        <i class="fas fa-plus icon-up mb-1" aria-hidden="true"></i>
+                                        <br>
+                                        <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <label tabindex="0" class="itemDevice-nonHover" backimg="icon/tuLanh/tuDong.svg"
-                                backhoverimg="icon/tuLanh/tuLanhMini-hover.svg" for="slTuDong"><img class="tile-icon"
-                                    alt="image item" src="icon/tuLanh/tuDong.svg"><span
-                                    class="tile-label text-center">Tủ đông</span></label>
-                            <div class="div-inline quantity">
-                                <input class="inputModal" type="number" id="slTuDong" name="slTuDong" min="0" max="10"
-                                    value="0">
-                                <div class="icon-up-down">
-                                    <i class="fas fa-plus icon-up mb-1" aria-hidden="true"></i>
-                                    <br>
-                                    <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                            <div class="mb-3">
+                                <label tabindex="0" class="itemDevice-nonHover" backimg="icon/tuLanh/tuLanhLon.svg"
+                                    backhoverimg="icon/tuLanh/tuLanhLon-hover.svg" for="slTuLanhLon"><img
+                                        class="tile-icon" alt="image item" src="icon/tuLanh/tuLanhLon.svg"><span
+                                        class="tile-label text-center">Cực lớn (460+)</span></label>
+                                <div class="div-inline quantity">
+                                    <input class="inputModal" type="number" id="slTuLanhLon" name="slTuLanhLon" min="0"
+                                        max="10" value="0">
+                                    <div class="icon-up-down">
+                                        <i class="fas fa-plus icon-up mb-1" aria-hidden="true"></i>
+                                        <br>
+                                        <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="mb-3">
+                                <label tabindex="0" class="itemDevice-nonHover" backimg="icon/tuLanh/tuDong.svg"
+                                    backhoverimg="icon/tuLanh/tuLanhMini-hover.svg" for="slTuDong"><img
+                                        class="tile-icon" alt="image item" src="icon/tuLanh/tuDong.svg"><span
+                                        class="tile-label text-center">Tủ đông</span></label>
+                                <div class="div-inline quantity">
+                                    <input class="inputModal" type="number" id="slTuDong" name="slTuDong" min="0"
+                                        max="10" value="0">
+                                    <div class="icon-up-down">
+                                        <i class="fas fa-plus icon-up mb-1" aria-hidden="true"></i>
+                                        <br>
+                                        <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center div-inline">
+
+                                <div class="custom-control custom-checkbox mt-5">
+                                    <input type="checkbox" class="custom-control-input" id="check-TulanhOption1"
+                                        name="">
+                                    <label class="custom-control-label labelModal" for="check-TulanhOption1">Tự động rã
+                                        đông?</label>
+                                </div>
+
+
+
+                                <div class="custom-control custom-checkbox mt-5">
+                                    <input type="checkbox" class="custom-control-input" id="check-TulanhOption2"
+                                        name="">
+                                    <label class="custom-control-label labelModal"
+                                        for="check-TulanhOption2">Side-by-Side?</label>
+                                </div>
+
+
+
+                                <div class="custom-control custom-checkbox mt-5">
+                                    <input type="checkbox" class="custom-control-input" id="check-TulanhOption3"
+                                        name="">
+                                    <label class="custom-control-label labelModal" for="check-TulanhOption3">Top
+                                        Freezer?</label>
+                                </div>
+
+
+                                <div class="custom-control custom-checkbox mt-5">
+                                    <input type="checkbox" class="custom-control-input" id="check-TulanhOption4"
+                                        name="">
+                                    <label class="custom-control-label labelModal" for="check-TulanhOption4">Điều chỉnh
+                                        tay (Manual Defrost))?</label>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
-                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-tuLanh" style="display: block;">Xác
-                        nhận</button>
+
+                        <button type="button" class="btn btn-xn m-auto" id="btn-xn-tuLanh" style="display: block;">Xác
+                            nhận</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- tivi  -->
-    <div class="modal fade pr-0 show" id="modalTivi" tabindex="-1" style="padding-right: 16px;" aria-modal="true"
+    <!-- <div class="modal fade pr-0 show" id="modalTivi" tabindex="-1" style="padding-right: 16px;" aria-modal="true"
         role="dialog">
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class="modal-header-full-width modal-header text-center">
-                    <h5 class="modal-title m-auto" id="exampleModalLabel">Tivi</h5>
+                    <h3 class="modal-title m-auto" id="exampleModalLabel">Tivi</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-center mb-5" id="question">Chọn loại tivi bạn có ?</h4>
+                    <h5 class="text-center mb-5" id="question">Chọn loại tivi bạn có ?</h5>
                     <div class="listDetailDevice" id="list-tivi">
                         <button tabindex="0" class="itemDevice" backimg="icon/tivi/tiviHD.svg"
                             backhoverimg="icon/tivi/tiviHD-hover.svg" name="tiviHD"><img src="icon/tivi/tiviHD.svg"
@@ -1126,7 +1234,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- may giat  -->
     <div class="modal fade pr-0 show" id="modalMayGiat" tabindex="-1" role="dialog" aria-modal="true"
@@ -1134,13 +1242,13 @@
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class="modal-header-full-width modal-header text-center">
-                    <h5 class="modal-title m-auto" id="exampleModalLabel">Máy giặt</h5>
+                    <h3 class="modal-title m-auto" id="exampleModalLabel">Máy giặt</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-center mb-5" id="question">Chọn loại máy giặt bạn có ?</h4>
+                    <h5 class="text-center mb-5" id="question">Chọn loại máy giặt bạn có ?</h5>
                     <div class="listDetailDevice" id="list-mayGiat">
                         <button tabindex="0" class="itemDevice" backimg="icon/mayGiat/mayGiatCuaDung.svg"
                             backhoverimg="icon/mayGiat/mayGiatCuaDung-hover.svg" name="mayGiatCuaDung"><img
@@ -1261,20 +1369,20 @@
         </div>
     </div>
 
-    <!-- quat may  -->
-    <div class="modal fade pr-0 show" id="modalQuat" tabindex="-1" style="padding-right: 16px;" aria-modal="true"
+    <!-- thiet bi khac  -->
+    <div class="modal fade pr-0 show" id="modalTbk" tabindex="-1" style="padding-right: 16px;" aria-modal="true"
         role="dialog">
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class="modal-header-full-width modal-header text-center">
-                    <h5 class="modal-title m-auto" id="exampleModalLabel">Quạt máy</h5>
+                    <h3 class="modal-title m-auto" id="exampleModalLabel">Thiết bị khác</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-center mb-5" id="question">Chọn loại quạt máy bạn có ?</h4>
-                    <div class="listDetailDevice" id="list-quat">
+                    <h5 class="text-center mb-5" id="question">Chọn các loại thiết bị khác bạn có ?</h5>
+                    <div class="listDetailDevice" id="list-tbk">
                         <button tabindex="0" class="itemDevice" backimg="icon/quat/quatTran.svg"
                             backhoverimg="icon/quat/quatTran-hover.svg" name="quatTran"><img class="tile-icon"
                                 alt="image item" src="icon/quat/quatTran.svg"><span class="tile-label">Quạt trần</span>
@@ -1283,11 +1391,20 @@
                             backhoverimg="icon/quat/quatCay-hover.svg" name="quatCay"><img class="tile-icon"
                                 alt="image item" src="icon/quat/quatCay.svg"><span class="tile-label">Quạt cây</span>
                         </button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/tivi/tiviHD.svg"
+                            backhoverimg="icon/tivi/tiviHD-hover.svg" name="tiviHD"><img src="icon/tivi/tiviHD.svg"
+                                class="tile-icon" alt="image item"><span class="tile-label">Tivi HD</span>
+                        </button>
+                        <button tabindex="0" class="itemDevice" backimg="icon/tivi/tivi4K.svg"
+                            backhoverimg="icon/tivi/tivi4K-hover.svg" name="tivi4K"><img src="icon/tivi/tivi4K.svg"
+                                class="tile-icon" alt="image item"><span class="tile-label">Tivi 4K
+                                cong</span>
+                        </button>
                     </div>
                     <div class="nextStep disable">
-                        <a href="#info-quat" class="tcwNextBtn" id="next" title="next" value=""></a>
+                        <a href="#info-tbk" class="tcwNextBtn" id="next" title="next" value=""></a>
                     </div>
-                    <div id="info-quat" class="mt-3 info-device disable">
+                    <div id="info-tbk" class="mt-3 info-device disable">
                         <ul class="nav nav-tabs tab-container" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link" id="" data-toggle="tab" href="#quatTran" role="tab"
@@ -1297,11 +1414,18 @@
                                 <a class="nav-link" id="" data-toggle="tab" href="#quatCay" role="tab"
                                     aria-controls="quatCay" aria-selected="false">Quạt cây</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#tiviHD" role="tab"
+                                    aria-controls="tiviHD" aria-selected="false">Tivi HD</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="" data-toggle="tab" href="#tivi4K" role="tab"
+                                    aria-controls="tivi4K" aria-selected="false">Tivi 4K</a>
+                            </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade row" id="quatTran" role="tabpanel" aria-labelledby="quatTran-tab"
-                                style="
-                                min-height: 150px;">
+                                style="min-height: 150px;">
                                 <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
                                     <div class="div-inline float-right quantity">
                                         <label class="labelModal" for="soGio-quatTran">Số giờ sử dụng/ngày
@@ -1333,8 +1457,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade row" id="quatCay" role="tabpanel" aria-labelledby="quatCay-tab"
-                                style="
-                            min-height: 150px;">
+                                style="min-height: 150px;">
                                 <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
                                     <div class="div-inline float-right quantity">
                                         <label class="labelModal" for="soGio-quatCay">Số giờ sử dụng/ngày
@@ -1365,9 +1488,73 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="tab-pane fade row" id="tiviHD" role="tabpanel" aria-labelledby="tiviHD-tab"
+                                style="
+                                min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-tiviHD">Số giờ sử dụng/ngày </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-tiviHD"
+                                                name="soGio-tiviHD" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-tiviHD">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-tiviHD"
+                                                name="soLuong-tiviHD" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade row" id="tivi4K" role="tabpanel" aria-labelledby="tivi4K-tab"
+                                style="min-height: 150px;">
+                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity">
+                                        <label class="labelModal" for="soGio-tivi4K">Số giờ sử dụng/ngày </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soGio-tivi4K"
+                                                name="soGio-tivi4K" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="div-inline quantity">
+                                        <label class="labelModal" for="soLuong-tivi4K">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" id="soLuong-tivi4K"
+                                                name="soLuong-tivi4K" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-quat" style="display: none;">Xác
+                    <button type="button" class="btn btn-xn m-auto" id="btn-xn-tbk" style="display: none;">Xác
                         nhận</button>
                 </div>
             </div>
@@ -1380,14 +1567,14 @@
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class="modal-header-full-width modal-header text-center">
-                    <h5 class="modal-title m-auto" id="exampleModalLabel">Lò nướng
-                    </h5>
+                    <h3 class="modal-title m-auto" id="exampleModalLabel">Lò nướng
+                    </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-center mb-5" id="question">Chọn loại lò nướng bạn có ?</h4>
+                    <h5 class="text-center mb-5" id="question">Chọn loại lò nướng bạn có ?</h5>
                     <div class="listDetailDevice" id="list-loNuong">
                         <button tabindex="0" class="itemDevice" backimg="icon/loNuong/loNuong1.svg"
                             backhoverimg="icon/loNuong/loNuong1-hover.svg" name="lo1"><img class="tile-icon"
@@ -1489,14 +1676,14 @@
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class="modal-header-full-width modal-header text-center">
-                    <h5 class="modal-title m-auto" id="exampleModalLabel">Điều hòa
-                    </h5>
+                    <h3 class="modal-title m-auto" id="exampleModalLabel">Điều hòa
+                    </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-center mb-5" id="question">Chọn loại điều hòa bạn có?</h4>
+                    <h5 class="text-center mb-5" id="question">Chọn loại điều hòa bạn có?</h5>
                     <div class="listDetailDevice" id="list-dieuHoa">
                         <button tabindex="0" class="itemDevice" backimg="icon/dieuHoa/dieuHoaAmTran.svg"
                             backhoverimg="icon/dieuHoa/dieuHoaAmTran-hover.svg" name="dieuHoaAmTran"><img
@@ -1615,24 +1802,56 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-4 text-center"
-                                    style="border-right: 1px solid #b6b6b6 !important;">
-                                    <h5 class="labelModal">Công suất</h5>
-                                    <div class="mx-auto">
-                                        <input type="number" min="0" max="50000" class="inputCongSuat"
-                                            id="congSuat-dieuHoaAmTran" value="9000">
-                                        <h5 class="btu labelModal">BTU</h5>
+
+                                <div class="col-md-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity pr-md-5">
+                                        <label class="labelModal" for="soNgay">Số ngày sử dụng/tháng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" class="form-control" id="soNgay"
+                                                name="soNgay" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="div-inline float-right quantity pr-md-5">
+                                        <label class="labelModal" for="soGio">Công suất </label>
+                                        <div class="div-inline">
+                                            <input type="number" min="0" max="50000" class="inputCongSuat"
+                                                id="congSuat-dieuHoaAmTran" value="9000">
+                                            <h5 class="btu labelModal"> BTU</h5>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="custom-control custom-checkbox text-center mt-md-4">
-                                        <input type="checkbox" class="custom-control-input" id="check-dieuHoaAmTran"
-                                            name="">
-                                        <label class="custom-control-label labelModal" for="check-dieuHoaAmTran">Điều
-                                            hòa có
-                                            Inverter?</label>
+                                <div class="col-md-6">
+                                    <div class="div-inline quantity pl-md-5">
+                                        <label class="labelModal" for="soLuong">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" class="form-control" id="soLuong"
+                                                name="soLuong" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="div-inline quantity">
+                                        <div class="custom-control custom-checkbox mt-md-4">
+                                            <input type="checkbox" class="custom-control-input" id="check-dieuHoaAmTran"
+                                                name="">
+                                            <label class="custom-control-label labelModal"
+                                                for="check-dieuHoaAmTran">Điều
+                                                hòa có Inverter?</label>
+                                        </div>
                                     </div>
                                 </div>
+
+
+
                             </div>
                             <div class="tab-pane fade row" id="dieuHoaTreoTuong" role="tabpanel"
                                 aria-labelledby="dieuHoaTreoTuong-tab">
@@ -1717,22 +1936,50 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-4 text-center"
-                                    style="border-right: 1px solid #b6b6b6 !important;">
-                                    <h5 class="labelModal">Công suất</h5>
-                                    <div class="mx-auto">
-                                        <input type="number" min="0" max="50000" class="inputCongSuat"
-                                            id="congSuat-dieuHoaTreoTuong" value="9000">
-                                        <h5 class="btu labelModal">BTU</h5>
+                                <div class="col-md-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity pr-md-5">
+                                        <label class="labelModal" for="soNgay">Số ngày sử dụng/tháng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" class="form-control" id="soNgay"
+                                                name="soNgay" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="div-inline float-right quantity pr-md-5">
+                                        <label class="labelModal" for="soGio">Công suất </label>
+                                        <div class="div-inline">
+                                            <input type="number" min="0" max="50000" class="inputCongSuat"
+                                                id="congSuat-dieuHoaAmTran" value="9000">
+                                            <h5 class="btu labelModal"> BTU</h5>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="custom-control custom-checkbox text-center mt-md-4">
-                                        <input type="checkbox" class="custom-control-input" id="check-dieuHoaTreoTuong"
-                                            name="">
-                                        <label class="custom-control-label labelModal" for="check-dieuHoaTreoTuong">Điều
-                                            hòa có
-                                            Inverter?</label>
+                                <div class="col-md-6">
+                                    <div class="div-inline quantity pl-md-5">
+                                        <label class="labelModal" for="soLuong">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" class="form-control" id="soLuong"
+                                                name="soLuong" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="div-inline quantity">
+                                        <div class="custom-control custom-checkbox mt-md-4">
+                                            <input type="checkbox" class="custom-control-input" id="check-dieuHoaAmTran"
+                                                name="">
+                                            <label class="custom-control-label labelModal"
+                                                for="check-dieuHoaAmTran">Điều
+                                                hòa có Inverter?</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1818,22 +2065,50 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-4 text-center"
-                                    style="border-right: 1px solid #b6b6b6 !important;">
-                                    <h5 class="labelModal">Công suất</h5>
-                                    <div class="mx-auto">
-                                        <input type="number" min="0" max="50000" class="inputCongSuat"
-                                            id="congSuat-dieuHoaCay" value="9000">
-                                        <h5 class="btu labelModal">BTU</h5>
+                                <div class="col-md-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline float-right quantity pr-md-5">
+                                        <label class="labelModal" for="soNgay">Số ngày sử dụng/tháng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" class="form-control" id="soNgay"
+                                                name="soNgay" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="div-inline float-right quantity pr-md-5">
+                                        <label class="labelModal" for="soGio">Công suất </label>
+                                        <div class="div-inline">
+                                            <input type="number" min="0" max="50000" class="inputCongSuat"
+                                                id="congSuat-dieuHoaAmTran" value="9000">
+                                            <h5 class="btu labelModal"> BTU</h5>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="custom-control custom-checkbox text-center mt-md-4">
-                                        <input type="checkbox" class="custom-control-input" id="check-dieuHoaCay"
-                                            name="">
-                                        <label class="custom-control-label labelModal" for="check-dieuHoaCay">Điều
-                                            hòa có
-                                            Inverter?</label>
+                                <div class="col-md-6">
+                                    <div class="div-inline quantity pl-md-5">
+                                        <label class="labelModal" for="soLuong">Số lượng </label>
+                                        <div class="div-inline">
+                                            <input class="inputModal" type="number" class="form-control" id="soLuong"
+                                                name="soLuong" min="1" value="1">
+                                            <div class="icon-up-down">
+                                                <i class="fas fa-plus icon-up mb-3"></i>
+                                                <br>
+                                                <i class="fas fa-minus icon-down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="div-inline quantity">
+                                        <div class="custom-control custom-checkbox mt-md-4">
+                                            <input type="checkbox" class="custom-control-input" id="check-dieuHoaAmTran"
+                                                name="">
+                                            <label class="custom-control-label labelModal"
+                                                for="check-dieuHoaAmTran">Điều
+                                                hòa có Inverter?</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1851,13 +2126,13 @@
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class="modal-header-full-width modal-header text-center">
-                    <h5 class="modal-title m-auto" id="exampleModalLabel">Máy sấy</h5>
+                    <h3 class="modal-title m-auto" id="exampleModalLabel">Máy sấy</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-center mb-5" id="question">Chọn loại máy sấy bạn có ?</h4>
+                    <h5 class="text-center mb-5" id="question">Chọn loại máy sấy bạn có ?</h5>
                     <div class="listDetailDevice" id="list-maySay">
                         <button tabindex="0" class="itemDevice" backimg="icon/maySay/maySayToc.svg"
                             backhoverimg="icon/maySay/maySayToc-hover.svg" name="maySayToc"><img class="tile-icon"
@@ -1966,8 +2241,8 @@
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class="modal-header-full-width modal-header text-center">
-                    <h5 class="modal-title m-auto" id="exampleModalLabel">Máy rửa bát
-                    </h5>
+                    <h3 class="modal-title m-auto" id="exampleModalLabel">Máy rửa bát
+                    </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
                     </button>
@@ -2040,14 +2315,14 @@
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class="modal-header-full-width modal-header text-center">
-                    <h5 class="modal-title m-auto" id="exampleModalLabel">Bình nóng lạnh
-                    </h5>
+                    <h3 class="modal-title m-auto" id="exampleModalLabel">Bình nóng lạnh
+                    </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times" aria-hidden="true"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-center mb-5" id="question">Chọn loại bình nóng lạnh bạn có ?</h4>
+                    <h5 class="text-center mb-5" id="question">Chọn loại bình nóng lạnh bạn có ?</h5>
                     <div class="listDetailDevice" id="list-binhNongLanh">
                         <button tabindex="0" class="itemDevice" backimg="icon/binhNongLanh/binhNongLanh15.svg"
                             backhoverimg="icon/binhNongLanh/binhNongLanh15-hover.svg" name="binhNongLanh15"><img
@@ -2087,8 +2362,8 @@
                             <div class="tab-pane fade row" id="binhNongLanh15" role="tabpanel"
                                 aria-labelledby="binhNongLanh15-tab" style="
                                 min-height: 150px;">
-                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
-                                    <div class="div-inline float-right quantity">
+                                <div class="col-md-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline quantity float-right pr-md-5">
                                         <div class="div-inline">
                                             <label class="labelModal" for="soGio-binhNongLanh15">Số giờ sử dụng/ngày
                                             </label>
@@ -2109,8 +2384,38 @@
                                                 for="check-binhNongLanh15">Bật cả ngày?</label>
                                         </div>
                                     </div>
+                                    <div class="div-inline quantity float-right pr-md-5 mt-md-5">
+                                        <label class="labelModal">Nhiệt độ đặt
+                                        </label>
+                                        <div class="div-inline">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="check-trungbinh"
+                                                    name="">
+                                                <label class="custom-control-label labelModal"
+                                                    for="check-trungbinh">Trung bình</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="check-trungbinh1" name="">
+                                                <label class="custom-control-label labelModal"
+                                                    for="check-trungbinh1">Ấm</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="check-trungbinh2" name="">
+                                                <label class="custom-control-label labelModal"
+                                                    for="check-trungbin2">Nóng</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="check-trungbinh3" name="">
+                                                <label class="custom-control-label labelModal"
+                                                    for="check-trungbinh3">Rất nóng</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <div class="div-inline quantity">
                                         <label class="labelModal" for="soLuong-binhNongLanh15">Số lượng </label>
                                         <div class="div-inline">
@@ -2123,35 +2428,78 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="div-inline  quantity mt-md-5">
+                                        <label class="labelModal" for="congSuat-binh15">Công suất </label>
+                                        <div class="div-inline">
+                                            <input type="number" min="0" max="50000" class="inputCongSuat"
+                                                id="congSuat-binh15" value="9000">
+                                            <h5 class="btu labelModal"> W</h5>
+                                        </div>
+                                    </div>
                                 </div>
+
+
+
                             </div>
                             <div class="tab-pane fade row" id="binhNongLanh20" role="tabpanel"
                                 aria-labelledby="binhNongLanh20-tab" style="
                             min-height: 150px;">
-                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
-                                    <div class="div-inline float-right quantity">
-                                        <label class="labelModal" for="soGio-binhNongLanh20">Số giờ sử dụng/ngày
-                                        </label>
+                                <div class="col-md-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline quantity float-right pr-md-5">
                                         <div class="div-inline">
-                                            <input class="inputModal" type="number" id="soGio-binhNongLanh20"
-                                                name="soGio-binhNongLanh20" min="1" max="24" value="1">
-                                            <div class="icon-up-down">
-                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
-                                                <br>
-                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            <label class="labelModal" for="soGio-binhNongLanh15">Số giờ sử dụng/ngày
+                                            </label>
+                                            <div class="div-inline">
+                                                <input class="inputModal" type="number" id="soGio-binhNongLanh20"
+                                                    name="soGio-binhNongLanh20" min="1" max="24" value="1">
+                                                <div class="icon-up-down">
+                                                    <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                    <br>
+                                                    <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="custom-control custom-checkbox text-center">
                                             <input type="checkbox" class="custom-control-input"
-                                                id="check-binhNongLanh20" name="">
+                                                id="check-binhNongLanh15" name="">
                                             <label class="custom-control-label labelModal"
-                                                for="check-binhNongLanh20">Bật cả ngày?</label>
+                                                for="check-binhNongLanh15">Bật cả ngày?</label>
+                                        </div>
+                                    </div>
+                                    <div class="div-inline quantity float-right pr-md-5 mt-md-5">
+                                        <label class="labelModal">Nhiệt độ đặt
+                                        </label>
+                                        <div class="div-inline">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="check-trungbinh"
+                                                    name="">
+                                                <label class="custom-control-label labelModal"
+                                                    for="check-trungbinh">Trung bình</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="check-trungbinh1" name="">
+                                                <label class="custom-control-label labelModal"
+                                                    for="check-trungbinh1">Ấm</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="check-trungbinh2" name="">
+                                                <label class="custom-control-label labelModal"
+                                                    for="check-trungbin2">Nóng</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="check-trungbinh3" name="">
+                                                <label class="custom-control-label labelModal"
+                                                    for="check-trungbinh3">Rất nóng</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <div class="div-inline quantity">
-                                        <label class="labelModal" for="soLuong-binhNongLanh20">Số lượng </label>
+                                        <label class="labelModal" for="soLuong-binhNongLanh15">Số lượng </label>
                                         <div class="div-inline">
                                             <input class="inputModal" type="number" id="soLuong-binhNongLanh20"
                                                 name="soLuong-binhNongLanh20" min="1" value="1">
@@ -2162,35 +2510,75 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="div-inline  quantity mt-md-5">
+                                        <label class="labelModal" for="congSuat-binh15">Công suất </label>
+                                        <div class="div-inline">
+                                            <input type="number" min="0" max="50000" class="inputCongSuat"
+                                                id="congSuat-binh15" value="9000">
+                                            <h5 class="btu labelModal"> W</h5>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade row" id="binhNongLanh30" role="tabpanel"
                                 aria-labelledby="binhNongLanh30-tab" style="
                             min-height: 150px;">
-                                <div class=" col-6" style="border-right: 1px solid #b6b6b6 !important;">
-                                    <div class="div-inline float-right quantity">
-                                        <label class="labelModal" for="soGio-binhNongLanh30">Số giờ sử dụng/ngày
-                                        </label>
+                                <div class="col-md-6" style="border-right: 1px solid #b6b6b6 !important;">
+                                    <div class="div-inline quantity float-right pr-md-5">
                                         <div class="div-inline">
-                                            <input class="inputModal" type="number" id="soGio-binhNongLanh30"
-                                                name="soGio-binhNongLanh30" min="1" max="24" value="1">
-                                            <div class="icon-up-down">
-                                                <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
-                                                <br>
-                                                <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                            <label class="labelModal" for="soGio-binhNongLanh15">Số giờ sử dụng/ngày
+                                            </label>
+                                            <div class="div-inline">
+                                                <input class="inputModal" type="number" id="soGio-binhNongLanh30"
+                                                    name="soGio-binhNongLanh30" min="1" max="24" value="1">
+                                                <div class="icon-up-down">
+                                                    <i class="fas fa-plus icon-up mb-3" aria-hidden="true"></i>
+                                                    <br>
+                                                    <i class="fas fa-minus icon-down" aria-hidden="true"></i>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="custom-control custom-checkbox text-center">
                                             <input type="checkbox" class="custom-control-input"
-                                                id="check-binhNongLanh30" name="">
+                                                id="check-binhNongLanh15" name="">
                                             <label class="custom-control-label labelModal"
-                                                for="check-binhNongLanh30">Bật cả ngày?</label>
+                                                for="check-binhNongLanh15">Bật cả ngày?</label>
+                                        </div>
+                                    </div>
+                                    <div class="div-inline quantity float-right pr-md-5 mt-md-5">
+                                        <label class="labelModal">Nhiệt độ đặt
+                                        </label>
+                                        <div class="div-inline">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="check-trungbinh"
+                                                    name="">
+                                                <label class="custom-control-label labelModal"
+                                                    for="check-trungbinh">Trung bình</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="check-trungbinh1" name="">
+                                                <label class="custom-control-label labelModal"
+                                                    for="check-trungbinh1">Ấm</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="check-trungbinh2" name="">
+                                                <label class="custom-control-label labelModal"
+                                                    for="check-trungbin2">Nóng</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="check-trungbinh3" name="">
+                                                <label class="custom-control-label labelModal"
+                                                    for="check-trungbinh3">Rất nóng</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <div class="div-inline quantity">
-                                        <label class="labelModal" for="soLuong-binhNongLanh20">Số lượng </label>
+                                        <label class="labelModal" for="soLuong-binhNongLanh15">Số lượng </label>
                                         <div class="div-inline">
                                             <input class="inputModal" type="number" id="soLuong-binhNongLanh30"
                                                 name="soLuong-binhNongLanh30" min="1" value="1">
@@ -2199,6 +2587,14 @@
                                                 <br>
                                                 <i class="fas fa-minus icon-down" aria-hidden="true"></i>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="div-inline  quantity mt-md-5">
+                                        <label class="labelModal" for="congSuat-binh15">Công suất </label>
+                                        <div class="div-inline">
+                                            <input type="number" min="0" max="50000" class="inputCongSuat"
+                                                id="congSuat-binh15" value="9000">
+                                            <h5 class="btu labelModal"> W</h5>
                                         </div>
                                     </div>
                                 </div>

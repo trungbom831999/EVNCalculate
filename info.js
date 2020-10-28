@@ -11,10 +11,17 @@ $(document).ready(function () {
         }
         $(this).addClass('chooseHouse');
         $(this).find('.tile-label').addClass('chooseHouse-label');
+		removeDisable("info-room");
         removeDisable("info-people");
         removeDisable("info-area");
     });
 
+	$('a[href="#info-room"]').click(function () {
+        setTimeout(function () {
+            $('#bedroom').focus();
+        }, 500);
+    });
+	
     $('a[href="#info-people"]').click(function () {
         setTimeout(function () {
             $('#adults').focus();
@@ -52,6 +59,7 @@ $(document).ready(function () {
             $('#fill-name').text("Họ tên: " + $('#name').val());
             $('#fill-phone').text("Số điện thoại: " + $('#phone').val());
             $('#fill-email').text("Email: " + $('#email').val());
+			$('#fill-makh').text("Mã KH: " + $('#makh').val());
             if ($('#pac-map').css('display') == 'block') {
                 if ($('#pac-input').val() != "") {
                     $('#fill-area').text("Địa chỉ: " + $('#pac-input').val());
@@ -67,6 +75,8 @@ $(document).ready(function () {
                     break;
                 }
             }
+			$('#fill-bedroom').text("-" + $('#bedroom').val() + " phòng ngủ");
+			$('#fill-bathroom').text("-" + $('#bathroom').val() + " phòng tắm");
             $('#fill-adults').text("-" + $('#adults').val() + " người lớn");
             $('#fill-children').text("-" + $('#children').val() + " trẻ em");
             $('#no-info').css('display', 'none');
@@ -74,22 +84,25 @@ $(document).ready(function () {
         }
     });
 
-    $('#name, #phone, #email').keyup(function () {
+    $('#name, #phone, #email, #makh').keyup(function () {
         var name = $('#name').val();
         var phone = $('#phone').val();
         var email = $('#email').val();
+		 var email = $('#makh').val();
         var area = $('#area').val();
-        if (name != "" && phone != "" && email != "") {
+        if (name != "" && phone != "" && email != "" && makh != "") {
             removeDisable("info-house");
             if ($('#info-house').hasClass('checked-house')) {
-                removeDisable("info-people");
+                 removeDisable("info-room");
+				removeDisable("info-people");
                 removeDisable("info-area");
             }
             if (area != "") {
                 $('#btn-xn-info').removeClass('disable');
             }
-        } else if (name == "" || phone == "" || email == "") {
+        } else if (name == "" || phone == "" || email == "" || makh == "") {
             addDisable("info-house");
+			addDisable("info-room");
             addDisable("info-people");
             addDisable("info-area");
             $('#btn-xn-info').addClass('disable');

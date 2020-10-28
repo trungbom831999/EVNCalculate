@@ -38,7 +38,7 @@ input:focus {
 #form-input {
     background-color: rgb(255, 255, 255);
     margin: 30px auto;
-    width: 50%;
+    width: 70%;
     border-radius: 10px;
     box-shadow: 0 0 15px 0 hsla(0, 0%, 78%, .75);
 }
@@ -491,7 +491,7 @@ table td {
 
 .itemHouse {
     color: #2F2A95;
-    background-color: #fff;
+    /*background-color: #fff;*/
 }
 
 .listHouse {
@@ -661,3 +661,6 @@ body {
     padding: 6px 12px;
 }
 
+#fill-info p{
+	margin-bottom:1px;
+}
